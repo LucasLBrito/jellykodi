@@ -4,7 +4,7 @@ __pycache__/
 
 # o zip pronto nao entra no repositorio: vai como "release"
 *.zip
-JellyKodi-v*-para-amigos/
+Ark-v*-para-amigos/
 
 # coisas de maquina
 Thumbs.db

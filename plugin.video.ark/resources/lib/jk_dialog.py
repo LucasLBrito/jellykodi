@@ -57,7 +57,7 @@ class OverlayButton(xbmcgui.WindowXMLDialog):
 
     @classmethod
     def create(cls, **kwargs):
-        return cls('script-jellykodi-overlay.xml', ADDON.getAddonInfo('path'), 'default', '1080i', **kwargs)
+        return cls('script-ark-overlay.xml', ADDON.getAddonInfo('path'), 'default', '1080i', **kwargs)
 
     def onInit(self):
         self._ready = True

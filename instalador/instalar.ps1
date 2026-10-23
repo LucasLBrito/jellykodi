@@ -1,4 +1,4 @@
-# JellyKodi - instalador para qualquer PC com Windows 10/11 (64 bits).
+# Ark - instalador para qualquer PC com Windows 10/11 (64 bits).
 # Instala em C:\Kodi (fora do OneDrive), cria as pastas Series e Filmes, atalho e abre.
 $ErrorActionPreference = 'Stop'
 $app  = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -9,20 +9,20 @@ function Say($m) { Write-Host "  $m" }
 $base = if ($env:JK_BASE) { $env:JK_BASE } else { 'C:\Kodi' }
 try { New-Item -ItemType Directory -Force -Path $base | Out-Null }
 catch { $base = Join-Path $env:USERPROFILE 'Kodi'; New-Item -ItemType Directory -Force -Path $base | Out-Null }
-$kodiDir  = Join-Path $base 'JellyKodi-Portatil\Kodi'
+$kodiDir  = Join-Path $base 'Ark\Kodi'
 $userdata = Join-Path $kodiDir 'portable_data\userdata'
 $series   = Join-Path $base 'Series'
 $filmes   = Join-Path $base 'Filmes'
 
-# 2. fechar o JellyKodi se estiver aberto
+# 2. fechar o Ark se estiver aberto
 Get-Process -Name kodi -ErrorAction SilentlyContinue | Where-Object { $_.Path -like "$kodiDir*" } | ForEach-Object {
-    Say 'Fechando o JellyKodi aberto...'; $null = $_.CloseMainWindow(); Start-Sleep 5
+    Say 'Fechando o Ark aberto...'; $null = $_.CloseMainWindow(); Start-Sleep 5
     if (-not $_.HasExited) { $_ | Stop-Process -Force }
 }
 
 # 3. copiar (atualizacao preserva configuracoes, historico e biblioteca)
 $atualizando = Test-Path -LiteralPath (Join-Path $kodiDir 'kodi.exe')
-Say ($(if ($atualizando) { "Atualizando o JellyKodi em $base ..." } else { "Instalando o JellyKodi em $base (1-2 minutos)..." }))
+Say ($(if ($atualizando) { "Atualizando o Ark em $base ..." } else { "Instalando o Ark em $base (1-2 minutos)..." }))
 $rc = @($src, $kodiDir, '/E', '/NFL', '/NDL', '/NJH', '/NJS', '/NP', '/R:2', '/W:2')
 if ($atualizando) { $rc += @('/XD', (Join-Path $src 'portable_data')) }
 & robocopy @rc | Out-Null
@@ -66,7 +66,7 @@ $undo = Join-Path $base 'Desfazer organizacao.bat'
 $log  = Join-Path $base 'organizacao-log.csv'
 $bat  = @"
 @echo off
-title Desfazer a ultima organizacao do JellyKodi
+title Desfazer a ultima organizacao do Ark
 echo Isto devolve para a pasta de origem os videos da ULTIMA organizacao.
 echo.
 pause
@@ -80,13 +80,13 @@ pause
 # 5. atalho na Area de Trabalho
 $kodi = Join-Path $kodiDir 'kodi.exe'
 try {
-    $s = (New-Object -ComObject WScript.Shell).CreateShortcut([Environment]::GetFolderPath('Desktop') + '\JellyKodi.lnk')
+    $s = (New-Object -ComObject WScript.Shell).CreateShortcut([Environment]::GetFolderPath('Desktop') + '\Ark.lnk')
     $s.TargetPath = $kodi; $s.Arguments = '-p'; $s.WorkingDirectory = $kodiDir; $s.IconLocation = "$kodi,0"; $s.Save()
-    Say 'Atalho "JellyKodi" criado na Area de Trabalho.'
+    Say 'Atalho "Ark" criado na Area de Trabalho.'
 } catch { Say 'Nao consegui criar o atalho. Abra pelo arquivo kodi.exe com -p.' }
 
 Write-Host ''
-Say "Pronto! JellyKodi instalado em $base"
+Say "Pronto! Ark instalado em $base"
 Say "Coloque series em:  $series"
 Say "Coloque filmes em:  $filmes"
 Say 'Ou so baixe na pasta Downloads: ele organiza sozinho em ~30 segundos.'

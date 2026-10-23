@@ -270,7 +270,7 @@ def choose_monitor():
     options = (setting or {}).get('options') or []
     if not setting or len(options) < 1:
         # Plataforma sem a opção pela API: abre a tela de Configurações > Sistema > Tela
-        xbmcgui.Dialog().ok('JellyKodi', 'Não consegui listar os monitores automaticamente.[CR]'
+        xbmcgui.Dialog().ok('Ark', 'Não consegui listar os monitores automaticamente.[CR]'
                             'Vou abrir Sistema > Tela: escolha o monitor na opção "Monitor".')
         xbmc.executebuiltin('ActivateWindow(systemsettings)')
         return
@@ -286,7 +286,7 @@ def choose_monitor():
     if idx < 0 or options[idx].get('value') == current:
         return
     rpc('Settings.SetSettingValue', setting='videoscreen.monitor', value=options[idx]['value'])
-    xbmcgui.Dialog().notification('JellyKodi', 'Kodi movido para: %s' % (options[idx].get('label') or options[idx]['value']),
+    xbmcgui.Dialog().notification('Ark', 'Kodi movido para: %s' % (options[idx].get('label') or options[idx]['value']),
                                   time=4000, sound=False)
 
 
@@ -325,7 +325,7 @@ def optimize_mkv():
               '    não decodifica esse formato (comum em HEVC 10-bit/4K em placas antigas).',
               '  • "Skipped/Dropped" subindo sem parar: CPU/GPU no limite, ou o Kodi está num',
               '    monitor com Hz diferente do outro. Use "Trocar monitor" e teste no outro.']
-    xbmcgui.Dialog().textviewer('JellyKodi - Otimizar MKV', '[CR]'.join(lines))
+    xbmcgui.Dialog().textviewer('Ark - Otimizar MKV', '[CR]'.join(lines))
 
 
 def update_info():
@@ -355,7 +355,7 @@ def update_info():
         msg = 'Buscando na internet: ' + ', '.join('%s (%s)' % (l, kinds[k]) for l, k in did)
     else:
         msg = 'Atualizando a biblioteca: novos arquivos vão aparecer em instantes.'
-    xbmcgui.Dialog().notification('JellyKodi', msg, time=6000, sound=False)
+    xbmcgui.Dialog().notification('Ark', msg, time=6000, sound=False)
     C.bump_widgets()
 
 
@@ -451,7 +451,7 @@ def rescrape():
     kind, dbid, path = PARAMS.get('type'), int(PARAMS.get('id', 0) or 0), PARAMS.get('path', '')
     if not dbid:
         return
-    if not xbmcgui.Dialog().yesno('JellyKodi', 'Buscar as informações deste item de novo na internet?[CR]'
+    if not xbmcgui.Dialog().yesno('Ark', 'Buscar as informações deste item de novo na internet?[CR]'
                                   'Dica: um arquivo .nfo com o link do TMDb ao lado do vídeo força a identificação certa.'):
         return
     if kind == 'movie':
@@ -459,7 +459,7 @@ def rescrape():
     elif kind == 'episode':
         M.rpc('VideoLibrary.RemoveEpisode', episodeid=dbid)
     M.scan(C.split_path(path)[0])
-    xbmcgui.Dialog().notification('JellyKodi', 'Buscando de novo... aparece em instantes.', time=5000, sound=False)
+    xbmcgui.Dialog().notification('Ark', 'Buscando de novo... aparece em instantes.', time=5000, sound=False)
     C.bump_widgets()
     xbmc.executebuiltin('Container.Refresh')
 
@@ -557,7 +557,7 @@ def _move_videos(origem, destino):
     if not tarefas:
         return 0
     prog = xbmcgui.DialogProgress()
-    prog.create('JellyKodi', 'Movendo seus vídeos para a pasta nova...')
+    prog.create('Ark', 'Movendo seus vídeos para a pasta nova...')
     movidos = 0
     for i, (de, para) in enumerate(tarefas):
         if prog.iscanceled():
@@ -583,7 +583,7 @@ def _pick(titulo, atual):
     if 'onedrive' in escolha.lower():
         if not xbmcgui.Dialog().yesno('Cuidado com o OneDrive',
                                       'Essa pasta está dentro do OneDrive. Ele fica subindo os vídeos para a '
-                                      'internet e pode deixá-los "só na nuvem", e aí o JellyKodi não abre.'
+                                      'internet e pode deixá-los "só na nuvem", e aí o Ark não abre.'
                                       '[CR][CR]Usar mesmo assim?', yeslabel='Usar', nolabel='Escolher outra'):
             return None
     return escolha
@@ -611,7 +611,7 @@ def choose_folders():
         else:
             break
     if _tidy(series) and _tidy(series) == _tidy(filmes):
-        xbmcgui.Dialog().ok('JellyKodi', 'Séries e Filmes não podem ser a mesma pasta.')
+        xbmcgui.Dialog().ok('Ark', 'Séries e Filmes não podem ser a mesma pasta.')
         return
     st = C.load_state()
     st['folders'] = {'series': _tidy(series), 'filmes': _tidy(filmes), 'downloads': _tidy(downloads)}
@@ -632,16 +632,16 @@ def choose_folders():
                 'No mesmo disco é instantâneo.' % (_tidy(antigo), novo_t),
                 yeslabel='Mover', nolabel='Deixar onde está'):
             n = _move_videos(antigo, novo_t)
-            xbmcgui.Dialog().notification('JellyKodi', '%d item(ns) movido(s).' % n, time=4000, sound=False)
+            xbmcgui.Dialog().notification('Ark', '%d item(ns) movido(s).' % n, time=4000, sound=False)
         M.scan(alvo)
     if mudou:
         M.rpc('VideoLibrary.Clean', showdialogs=False)
         xbmcgui.Dialog().ok('Pastas salvas',
                             'Pasta de %s atualizada.[CR][CR]Já estou buscando capas e sinopses. '
                             'A aba [B]Pastas[/B] do menu só mostra o caminho novo depois que você fechar e '
-                            'abrir o JellyKodi de novo.' % ' e '.join(mudou))
+                            'abrir o Ark de novo.' % ' e '.join(mudou))
     else:
-        xbmcgui.Dialog().notification('JellyKodi', 'Pastas salvas.', time=3000, sound=False)
+        xbmcgui.Dialog().notification('Ark', 'Pastas salvas.', time=3000, sound=False)
     C.bump_widgets()
 
 
@@ -703,13 +703,13 @@ def _tidy_once():
 def organize_downloads():
     series_root, filmes_root = _roots()
     if not series_root and not filmes_root:
-        xbmcgui.Dialog().ok('JellyKodi', 'Não achei as pastas Séries/Filmes cadastradas no Kodi.')
+        xbmcgui.Dialog().ok('Ark', 'Não achei as pastas Séries/Filmes cadastradas no Kodi.')
         return
     plans = O.plan_folder(_downloads_root(), _tidy(series_root), _tidy(filmes_root))
     if not plans:
-        xbmcgui.Dialog().ok('JellyKodi', 'Nenhum vídeo novo para organizar.[CR][CR]'
+        xbmcgui.Dialog().ok('Ark', 'Nenhum vídeo novo para organizar.[CR][CR]'
                             'Pode arrastar a pasta inteira da série para a pasta de downloads: '
-                            'o JellyKodi entra nas subpastas e usa o nome da pasta quando o '
+                            'o Ark entra nas subpastas e usa o nome da pasta quando o '
                             'nome do arquivo não diz qual é a série.')
         _tidy_once()
         return
@@ -730,7 +730,7 @@ def organize_downloads():
     M.auto_configure(st)
     C.save_state(st)
     M.scan()
-    xbmcgui.Dialog().notification('JellyKodi', '%d vídeo(s) organizados. Buscando capas e sinopses...' % moved,
+    xbmcgui.Dialog().notification('Ark', '%d vídeo(s) organizados. Buscando capas e sinopses...' % moved,
                                   time=6000, sound=False)
     C.bump_widgets()
 
@@ -759,7 +759,7 @@ def show_help():
     txt = """[B]Como colocar séries e filmes novos[/B]
 
 [B]Jeito fácil:[/B] baixe normalmente para a pasta Downloads e aperte [B]Organizar Downloads[/B]
-na tela inicial. O JellyKodi coloca cada vídeo na pasta certa e busca capa, fundo e sinopse.
+na tela inicial. O Ark coloca cada vídeo na pasta certa e busca capa, fundo e sinopse.
 
 [B]Jeito manual:[/B]
   • Série:  %s\\Nome da Série\\Season 01\\Nome da Série S01E01.mkv
@@ -772,7 +772,7 @@ na tela inicial. O JellyKodi coloca cada vídeo na pasta certa e busca capa, fun
   • Não misture filmes e séries na mesma pasta.
   • Identificou errado? Menu (botão X / tecla C) no item > [B]Buscar informações de novo[/B].
   • Precisa de internet. As imagens aparecem em 1 a 2 minutos.""" % (series_root or 'C:\\Kodi\\Series', filmes_root or 'C:\\Kodi\\Filmes')
-    xbmcgui.Dialog().textviewer('JellyKodi - Como adicionar', txt)
+    xbmcgui.Dialog().textviewer('Ark - Como adicionar', txt)
 
 
 ROUTES = {'organize': organize_downloads, 'open_folder': open_folder, 'help': show_help, 'folders': choose_folders, 'rescrape': rescrape, 'themes': list_themes, 'theme': list_theme, 'continue': list_continue, 'update': update_info, 'recent': list_recent, 'play': play, 'forget': forget,

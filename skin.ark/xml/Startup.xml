@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
-	<!-- JellyKodi: na primeira execução, deixa o menu enxuto (só vídeo).
+	<!-- Ark: na primeira execução, deixa o menu enxuto (só vídeo).
 	     Tudo pode ser reativado em Configurações > Skin > Itens do menu principal. -->
 	<onload condition="!Skin.HasSetting(jk_initialized)">Skin.SetBool(HomeMenuNoMusicButton)</onload>
 	<onload condition="!Skin.HasSetting(jk_initialized)">Skin.SetBool(HomeMenuNoMusicVideoButton)</onload>

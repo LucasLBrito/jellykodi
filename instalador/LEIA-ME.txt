@@ -1,6 +1,6 @@
 ===============================================================
-  JELLYKODI  -  Kodi estilo Netflix, em portugues, feito p/ controle
-  Versao 1.8  (Kodi 21.3 "Omega" oficial + JellyKodi)
+  ARK  -  Kodi estilo Netflix, em portugues, feito p/ controle
+  Versao 1.8  (Kodi 21.3 "Omega" oficial + Ark)
 ===============================================================
 
 O QUE E
@@ -26,16 +26,16 @@ PRECISA DE
 ---------------------------------------------------------------
   1) Clique com o botao direito no ZIP > "Extrair tudo..." > Extrair.
      (Nao rode de dentro do ZIP. Se o Windows reclamar, use o 7-Zip.)
-  2) Na pasta extraida, de dois cliques em  "INSTALAR JellyKodi.bat".
+  2) Na pasta extraida, de dois cliques em  "INSTALAR Ark.bat".
      Se aparecer "O Windows protegeu o computador":
      Mais informacoes > Executar assim mesmo.
-  3) Espere a janela preta terminar. O JellyKodi abre sozinho.
+  3) Espere a janela preta terminar. O Ark abre sozinho.
 
   Ele fica instalado em  C:\Kodi  com esta organizacao:
-     C:\Kodi\JellyKodi-Portatil   o programa (nao mexer)
+     C:\Kodi\Ark   o programa (nao mexer)
      C:\Kodi\Series               suas series
      C:\Kodi\Filmes               seus filmes
-  E cria o atalho "JellyKodi" na Area de Trabalho.
+  E cria o atalho "Ark" na Area de Trabalho.
 
   * Fica FORA do OneDrive de proposito (videos grandes lotariam a nuvem).
   * Nao mexe no Kodi que voce talvez ja tenha instalado.
@@ -47,7 +47,7 @@ PRECISA DE
   JEITO FACIL (nao precisa apertar nada)
     Baixe normalmente para a pasta Downloads. Pode ser a PASTA INTEIRA
     da serie, do jeito que veio: ele entra nas subpastas sozinho.
-    Uns 30 segundos depois de o download terminar, o JellyKodi guarda
+    Uns 30 segundos depois de o download terminar, o Ark guarda
     cada episodio no lugar certo e avisa na tela. Em 1-2 minutos
     aparecem capa, fundo e sinopse.
       - Se os arquivos forem so "01.mkv, 02.mkv", ele usa o NOME DA
@@ -58,7 +58,7 @@ PRECISA DE
       - Nao mexe em nada enquanto voce esta assistindo.
     Prefere apertar um botao? Desca ate "Adicionar e organizar" e use
     "Organizar Downloads" - ele mostra o resumo e voce confirma.
-    Para desligar o automatico: Configuracoes do add-on JellyKodi >
+    Para desligar o automatico: Configuracoes do add-on Ark >
     "Organizar sozinho o que cair na pasta de downloads".
 
     Onde ficam suas pastas? Fileira "Adicionar e organizar" >
@@ -114,7 +114,7 @@ PRECISA DE
   CONTROLE DE PLAYSTATION / 8BITDO / STEAM DECK
     Xbox funciona direto. Os outros, o mais facil e pelo Steam:
     Steam > Adicionar um jogo > Adicionar jogo nao-Steam > Procurar >
-    C:\Kodi\JellyKodi-Portatil\Kodi\kodi.exe
+    C:\Kodi\Ark\Kodi\kodi.exe
     Propriedades > Opcoes de inicializacao:  -p      (obrigatorio!)
     Controle > Steam Input ativado, modelo "Gamepad".
     8BitDo: coloque no modo X-input (Start+X ao ligar, ou chave em X).
@@ -141,7 +141,7 @@ PRECISA DE
   Ele organizou errado / quero os arquivos de volta
       Em C:\Kodi tem "Desfazer organizacao.bat": devolve para a pasta
       de origem os videos da ULTIMA organizacao.
-      Para desligar o automatico: Configuracoes do add-on JellyKodi >
+      Para desligar o automatico: Configuracoes do add-on Ark >
       "Organizar sozinho o que cair na pasta de downloads".
   Ele nao organizou minha pasta
       Espere ~30 s depois que o download terminar (ele so mexe quando o
@@ -149,25 +149,25 @@ PRECISA DE
       Se os arquivos nao tiverem numero nenhum no nome, ele nao adivinha:
       renomeie para 01.mkv, 02.mkv... ou use S01E01.
   Sinopse em ingles
-      O JellyKodi pede tudo em portugues. Quando continua em ingles ou
+      O Ark pede tudo em portugues. Quando continua em ingles ou
       japones e porque o TMDb nao tem esse texto traduzido (comum em
       anime pouco conhecido) - nao tem o que fazer.
   Capas nao aparecem
       Precisa de internet. Aperte "Atualizar capas" e espere 2 minutos.
-  Atualizar para uma versao nova do JellyKodi
-      Rode o "INSTALAR JellyKodi.bat" da versao nova. Mantem suas
+  Atualizar para uma versao nova do Ark
+      Rode o "INSTALAR Ark.bat" da versao nova. Mantem suas
       configuracoes, historico e biblioteca.
   Desinstalar
-      Apague a pasta C:\Kodi\JellyKodi-Portatil e o atalho.
+      Apague a pasta C:\Kodi\Ark e o atalho.
       (C:\Kodi\Series e C:\Kodi\Filmes sao seus videos: apague so se quiser.)
   Log para pedir ajuda
-      C:\Kodi\JellyKodi-Portatil\Kodi\portable_data\kodi.log
+      C:\Kodi\Ark\Kodi\portable_data\kodi.log
 
 ---------------------------------------------------------------
  CREDITOS E LICENCA
 ---------------------------------------------------------------
   Kodi e software livre (GPL-2.0) - https://kodi.tv
   Codigo-fonte: https://github.com/xbmc/xbmc
-  Skin JellyKodi derivada da Estuary (CC BY-SA 4.0 / GPL-2.0).
+  Skin Ark derivada da Estuary (CC BY-SA 4.0 / GPL-2.0).
   Informacoes e imagens: The Movie Database (TMDb) - https://www.themoviedb.org
-  JellyKodi por Lucas. Este pacote nao contem filmes nem series.
+  Ark por Lucas. Este pacote nao contem filmes nem series.

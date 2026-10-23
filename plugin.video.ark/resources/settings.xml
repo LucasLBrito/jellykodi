@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings version="1">
-	<section id="plugin.video.jellykodi">
+	<section id="plugin.video.ark">
 		<category id="player" label="30000" help="">
 			<group id="1" label="30001">
 				<setting id="auto_skip_intro" type="boolean" label="30010" help="30011">

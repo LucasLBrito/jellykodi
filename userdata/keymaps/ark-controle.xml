@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  JellyKodi - mapeamento de controle (layout Xbox / Steam Input "Gamepad")
+  Ark - mapeamento de controle (layout Xbox / Steam Input "Gamepad")
   Copie para:  portable_data\userdata\keymaps\
   Só sobrescreve os botões listados; o resto continua com o padrão do Kodi.
 
@@ -69,15 +69,15 @@
       <righttrigger>AnalogFastForward</righttrigger>
       <rightstick direction="up">VolumeUp</rightstick>
       <rightstick direction="down">VolumeDown</rightstick>
-      <!-- JellyKodi Player: marcar abertura/créditos da pasta (série) -->
-      <leftthumb>NotifyAll(jellykodi,mark_intro)</leftthumb>
-      <leftthumb holdtime="1500">NotifyAll(jellykodi,clear_marks)</leftthumb>
-      <rightthumb>NotifyAll(jellykodi,mark_credits)</rightthumb>
+      <!-- Ark Player: marcar abertura/créditos da pasta (série) -->
+      <leftthumb>NotifyAll(ark,mark_intro)</leftthumb>
+      <leftthumb holdtime="1500">NotifyAll(ark,clear_marks)</leftthumb>
+      <rightthumb>NotifyAll(ark,mark_credits)</rightthumb>
     </joystick>
     <keyboard>
       <f8>ActivateWindow(VideoBookmarks)</f8>
-      <f9>NotifyAll(jellykodi,mark_intro)</f9>
-      <f10>NotifyAll(jellykodi,mark_credits)</f10>
+      <f9>NotifyAll(ark,mark_intro)</f9>
+      <f10>NotifyAll(ark,mark_credits)</f10>
     </keyboard>
   </FullscreenVideo>
 

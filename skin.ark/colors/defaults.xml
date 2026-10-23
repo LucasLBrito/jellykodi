@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- JellyKodi: paleta estilo Netflix (preto + vermelho) -->
+<!-- Ark: paleta estilo Netflix (preto + vermelho) -->
 <colors>
 	<color name="primary_background">FF141414</color>
 	<color name="secondary_background">01000000</color>

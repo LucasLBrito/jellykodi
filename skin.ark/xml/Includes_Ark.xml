@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- JellyKodi: tela inicial estilo Netflix (variáveis + fileira de cards) -->
+<!-- Ark: tela inicial estilo Netflix (variáveis + fileira de cards) -->
 <includes>
 	<variable name="JKHeroTitle">
 		<value condition="String.IsEqual(Window(home).Property(jk_hero),5100) + Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.Label]</value>
@@ -15,7 +15,7 @@
 		<value condition="Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.Label]</value>
 		<value condition="Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.Label]</value>
 		<value condition="Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.Label]</value>
-		<value>Bem-vindo ao JellyKodi</value>
+		<value>Bem-vindo ao Ark</value>
 	</variable>
 	<variable name="JKHeroSub">
 		<value condition="String.IsEqual(Window(home).Property(jk_hero),5100) + Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.Label2]$INFO[Container(5100).ListItem.Year,  ,]$INFO[Container(5100).ListItem.Genre,  •  ,]</value>

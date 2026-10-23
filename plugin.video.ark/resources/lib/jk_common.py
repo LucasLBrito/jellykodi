@@ -11,7 +11,7 @@ import xbmcaddon
 import xbmcgui
 import xbmcvfs
 
-ADDON_ID = 'plugin.video.jellykodi'
+ADDON_ID = 'plugin.video.ark'
 ADDON = xbmcaddon.Addon(ADDON_ID)
 PROFILE = xbmcvfs.translatePath(ADDON.getAddonInfo('profile'))
 STATE_FILE = os.path.join(PROFILE, 'state.json')
@@ -29,7 +29,7 @@ JUNK_RE = re.compile(r'(\[[^\]]*\]|\([^)]*(1080|720|2160|480)[^)]*\)|\b(1080p|72
 
 
 def log(msg, level=xbmc.LOGINFO):
-    xbmc.log('[JellyKodi] %s' % msg, level)
+    xbmc.log('[Ark] %s' % msg, level)
 
 
 def setting_bool(key, default=False):
@@ -92,7 +92,7 @@ def save_state(st):
 
 
 def bump_widgets():
-    """Força a tela inicial a recarregar as fileiras do JellyKodi."""
+    """Força a tela inicial a recarregar as fileiras do Ark."""
     HOME.setProperty('jk_refresh', str(int(time.time())))
 
 

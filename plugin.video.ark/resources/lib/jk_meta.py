@@ -180,7 +180,7 @@ def ensure_ptbr(source):
         return False
     try:
         con = sqlite3.connect(db, timeout=15)
-        # compara com o texto inteiro: assim, quando o JellyKodi muda os ajustes de idioma
+        # compara com o texto inteiro: assim, quando o Ark muda os ajustes de idioma
         # (ex.: languageDetails novo), a pasta é regravada em vez de passar batido
         cur = con.execute("UPDATE path SET strSettings=? WHERE strPath=? AND strScraper LIKE 'metadata.%themoviedb%' "
                           "AND (strSettings IS NULL OR strSettings<>?)",

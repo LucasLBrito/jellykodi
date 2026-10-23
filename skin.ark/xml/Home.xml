@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- JellyKodi: tela inicial estilo Netflix (destaque + fileiras). Original da Estuary em backup/Home_v1.2.xml -->
+<!-- Ark: tela inicial estilo Netflix (destaque + fileiras). Original da Estuary em backup/Home_v1.2.xml -->
 <window>
 	<defaultcontrol>301</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
@@ -49,7 +49,7 @@
 			<aligny>center</aligny>
 			<font>font45_title</font>
 			<textcolor>FFE50914</textcolor>
-			<label>JELLYKODI</label>
+			<label>ARK</label>
 		</control>
 		<control type="grouplist" id="9000">
 			<left>420</left>
@@ -159,7 +159,7 @@
 					<focusedcolor>FFFFFFFF</focusedcolor>
 					<texturefocus colordiffuse="40FFFFFF" border="8">jk/btn_white.png</texturefocus>
 					<texturenofocus />
-					<onclick>RunPlugin(plugin://plugin.video.jellykodi/?action=update)</onclick>
+					<onclick>RunPlugin(plugin://plugin.video.ark/?action=update)</onclick>
 				</control>
 				<control type="button" id="9101">
 					<width>auto</width>
@@ -173,7 +173,7 @@
 					<focusedcolor>FFFFFFFF</focusedcolor>
 					<texturefocus colordiffuse="40FFFFFF" border="8">jk/btn_white.png</texturefocus>
 					<texturenofocus />
-					<onclick>RunPlugin(plugin://plugin.video.jellykodi/?action=monitor)</onclick>
+					<onclick>RunPlugin(plugin://plugin.video.ark/?action=monitor)</onclick>
 				</control>
 				<control type="button" id="9102">
 					<width>auto</width>
@@ -187,7 +187,7 @@
 					<focusedcolor>FFFFFFFF</focusedcolor>
 					<texturefocus colordiffuse="40FFFFFF" border="8">jk/btn_white.png</texturefocus>
 					<texturenofocus />
-					<onclick>RunPlugin(plugin://plugin.video.jellykodi/?action=optimize)</onclick>
+					<onclick>RunPlugin(plugin://plugin.video.ark/?action=optimize)</onclick>
 				</control>
 				<control type="button" id="9103">
 					<width>70</width>
@@ -322,12 +322,12 @@
 				<include content="JKRow">
 					<param name="list_id" value="5100"/>
 					<param name="header" value="Continuar assistindo"/>
-					<param name="content" value="plugin://plugin.video.jellykodi/?action=continue&amp;r=$INFO[Window(home).Property(jk_refresh)]"/>
+					<param name="content" value="plugin://plugin.video.ark/?action=continue&amp;r=$INFO[Window(home).Property(jk_refresh)]"/>
 				</include>
 				<include content="JKRow">
 					<param name="list_id" value="5150"/>
 					<param name="header" value="Por tema"/>
-					<param name="content" value="plugin://plugin.video.jellykodi/?action=themes&amp;r=$INFO[Window(home).Property(jk_refresh)]"/>
+					<param name="content" value="plugin://plugin.video.ark/?action=themes&amp;r=$INFO[Window(home).Property(jk_refresh)]"/>
 				</include>
 				<control type="label" id="50501">
 					<left>80</left>
@@ -379,49 +379,49 @@
 							<label2>Põe séries e filmes baixados no lugar certo</label2>
 							<icon>jk/ic_organize.png</icon>
 							<thumb>jk/ic_organize.png</thumb>
-							<onclick>RunPlugin(plugin://plugin.video.jellykodi/?action=organize)</onclick>
+							<onclick>RunPlugin(plugin://plugin.video.ark/?action=organize)</onclick>
 						</item>
 						<item>
 							<label>Escolher pastas</label>
 							<label2>Onde ficam suas séries, filmes e downloads</label2>
 							<icon>jk/ic_folder.png</icon>
 							<thumb>jk/ic_folder.png</thumb>
-							<onclick>RunPlugin(plugin://plugin.video.jellykodi/?action=folders)</onclick>
+							<onclick>RunPlugin(plugin://plugin.video.ark/?action=folders)</onclick>
 						</item>
 						<item>
 							<label>Abrir pasta Séries</label>
 							<label2>Copie aqui as pastas das séries</label2>
 							<icon>jk/ic_series.png</icon>
 							<thumb>jk/ic_series.png</thumb>
-							<onclick>RunPlugin(plugin://plugin.video.jellykodi/?action=open_folder&amp;which=series)</onclick>
+							<onclick>RunPlugin(plugin://plugin.video.ark/?action=open_folder&amp;which=series)</onclick>
 						</item>
 						<item>
 							<label>Abrir pasta Filmes</label>
 							<label2>Copie aqui os filmes</label2>
 							<icon>jk/ic_filmes.png</icon>
 							<thumb>jk/ic_filmes.png</thumb>
-							<onclick>RunPlugin(plugin://plugin.video.jellykodi/?action=open_folder&amp;which=filmes)</onclick>
+							<onclick>RunPlugin(plugin://plugin.video.ark/?action=open_folder&amp;which=filmes)</onclick>
 						</item>
 						<item>
 							<label>Atualizar capas</label>
 							<label2>Busca imagens e sinopses na internet</label2>
 							<icon>jk/ic_refresh.png</icon>
 							<thumb>jk/ic_refresh.png</thumb>
-							<onclick>RunPlugin(plugin://plugin.video.jellykodi/?action=update)</onclick>
+							<onclick>RunPlugin(plugin://plugin.video.ark/?action=update)</onclick>
 						</item>
 						<item>
 							<label>Como adicionar</label>
 							<label2>Passo a passo rápido</label2>
 							<icon>jk/ic_help.png</icon>
 							<thumb>jk/ic_help.png</thumb>
-							<onclick>RunPlugin(plugin://plugin.video.jellykodi/?action=help)</onclick>
+							<onclick>RunPlugin(plugin://plugin.video.ark/?action=help)</onclick>
 						</item>
 					</content>
 				</control>
 				<include content="JKRow">
 					<param name="list_id" value="5200"/>
 					<param name="header" value="Adicionados recentemente"/>
-					<param name="content" value="plugin://plugin.video.jellykodi/?action=recent&amp;r=$INFO[Window(home).Property(jk_refresh)]"/>
+					<param name="content" value="plugin://plugin.video.ark/?action=recent&amp;r=$INFO[Window(home).Property(jk_refresh)]"/>
 				</include>
 				<include content="JKRow">
 					<param name="list_id" value="5300"/>

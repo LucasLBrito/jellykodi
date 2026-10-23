@@ -1,4 +1,4 @@
-# JellyKodi
+# Ark
 
 Uma "Netflix" para os seus arquivos de vídeo, em português, feita para usar no **controle**.
 
@@ -39,7 +39,7 @@ que vêm no Kodi padrão.
 ## Instalar (Windows)
 
 Baixe o `.zip` da página de [**Releases**](../../releases), extraia e dê dois cliques em
-`INSTALAR JellyKodi.bat`.
+`INSTALAR Ark.bat`.
 
 Ele instala em `C:\Kodi`, cria as pastas `Series` e `Filmes`, põe um atalho na Área de
 Trabalho e abre. **Não mexe** em um Kodi que você já tenha instalado.
@@ -56,18 +56,18 @@ O `LEIA-ME.txt` dentro do pacote explica tudo em detalhe, incluindo os botões d
 Se você já tem Kodi 21 "Omega" e não quer o pacote inteiro, copie para a pasta de add-ons:
 
 ```
-skin.jellykodi/           → addons/skin.jellykodi/
-plugin.video.jellykodi/   → addons/plugin.video.jellykodi/
-userdata/keymaps/jellykodi-controle.xml → userdata/keymaps/
+skin.ark/           → addons/skin.ark/
+plugin.video.ark/   → addons/plugin.video.ark/
+userdata/keymaps/ark-controle.xml → userdata/keymaps/
 ```
 
-Depois: Configurações → Interface → Skin → **JellyKodi**.
+Depois: Configurações → Interface → Skin → **Ark**.
 
 ---
 
 ## Como fica
 
-![Tela inicial do JellyKodi](instalador/Como%20fica%20(exemplo).png)
+![Tela inicial do Ark](instalador/Como%20fica%20(exemplo).png)
 
 ---
 
@@ -75,8 +75,8 @@ Depois: Configurações → Interface → Skin → **JellyKodi**.
 
 | Pasta | O que é |
 |---|---|
-| `skin.jellykodi/` | A skin (derivada da Estuary) |
-| `plugin.video.jellykodi/` | O add-on: organizador, pular abertura, próximo episódio, fileiras da tela inicial |
+| `skin.ark/` | A skin (derivada da Estuary) |
+| `plugin.video.ark/` | O add-on: organizador, pular abertura, próximo episódio, fileiras da tela inicial |
 | `userdata/keymaps/` | O mapeamento do controle |
 | `instalador/` | O instalador para Windows e o LEIA-ME do usuário |
 | `docs/` | Notas de desenvolvimento |

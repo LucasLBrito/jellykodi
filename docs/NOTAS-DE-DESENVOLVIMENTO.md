@@ -1,16 +1,16 @@
-# JellyKodi — contexto para Claude Code
+# Ark — contexto para Claude Code
 
 Kodi 21.3 "Omega" **portátil** (Windows) personalizado estilo Netflix/Jellyfin, em pt-BR, feito para controle (Xbox/8BitDo/Steam). Dono: Lucas (fala português; responder em PT-BR, linguagem simples). Sempre **testar todas as navegações** depois de mudar algo.
 
 ## Onde está cada coisa
-- Fonte (este zip): `skin.jellykodi/` (v1.6.0), `plugin.video.jellykodi/` (v1.6.0), `userdata/keymaps/jellykodi-controle.xml`.
+- Fonte (este zip): `skin.ark/` (v1.6.0), `plugin.video.ark/` (v1.6.0), `userdata/keymaps/ark-controle.xml`.
 - PC do Lucas (instalado):
-  - Programa: `C:\Kodi\JellyKodi-Portatil\Kodi\kodi.exe -p` (dados em `...\Kodi\portable_data\`; log em `portable_data\kodi.log`)
-  - Addons instalados: `...\Kodi\addons\skin.jellykodi` e `...\Kodi\addons\plugin.video.jellykodi` (verificar; podem estar em `portable_data\addons`)
+  - Programa: `C:\Kodi\Ark\Kodi\kodi.exe -p` (dados em `...\Kodi\portable_data\`; log em `portable_data\kodi.log`)
+  - Addons instalados: `...\Kodi\addons\skin.ark` e `...\Kodi\addons\plugin.video.ark` (verificar; podem estar em `portable_data\addons`)
   - Vídeos: `C:\Kodi\Series` (Madoka 12 eps; A Lenda de Korra S01E01-06), `C:\Kodi\Filmes\Puella Magi Madoka Magica\` (Rebellion + Concept Movie; `.nfo` com https://www.themoviedb.org/movie/212162)
   - Downloads ainda com Korra S01E07-12 e S02E01-07 (usar "Organizar Downloads")
   - Pasta Documentos é do OneDrive → manter tudo FORA dele.
-- Pacote para amigos: `JellyKodi-v1.6-para-amigos.zip` (~95 MB) = `INSTALAR JellyKodi.bat` + `app/instalar.ps1` (instala em C:\Kodi, robocopy sem sobrescrever portable_data, cria Series/Filmes, escreve sources.xml se não existir, atalho na Área de Trabalho) + `app/Kodi` + `app/Extras/vc_redist_x64.exe` + `LEIA-ME.txt`.
+- Pacote para amigos: `Ark-v1.6.zip` (~95 MB) = `INSTALAR Ark.bat` + `app/instalar.ps1` (instala em C:\Kodi, robocopy sem sobrescrever portable_data, cria Series/Filmes, escreve sources.xml se não existir, atalho na Área de Trabalho) + `app/Kodi` + `app/Extras/vc_redist_x64.exe` + `LEIA-ME.txt`.
 
 ## Deploy de mudanças
 Copiar as pastas do addon/skin por cima das instaladas e reiniciar o Kodi (ou `ReloadSkin()` para XML). Fechar o Kodi antes de mexer no banco `portable_data/userdata/Database/MyVideos*.db`.
@@ -18,17 +18,17 @@ Copiar as pastas do addon/skin por cima das instaladas e reiniciar o Kodi (ou `R
 ## Skin (derivada da Estuary)
 - `colors/defaults.xml`: paleta Netflix (foco FFE50914, fundo FF141414).
 - `xml/Home.xml`: menu topo 9000 (Início, Séries, Filmes, Pastas, Pesquisar); menu direita 9100 (Atualizar, Monitor, Otimizar, Config, Desligar); hero 301 Assistir / 302 Mais informações; grouplist 500 de fileiras:
-  5100 Continuar assistindo · 5150 Por tema · 5050 "Adicionar e organizar" (itens estáticos → `RunPlugin(plugin://plugin.video.jellykodi/?action=organize|open_folder&which=series|filmes|update|help)`) · 5200 Recentes · 5300 Filmes · 5400 Séries · 5500 Suas pastas.
-- `xml/Includes_JellyKodi.xml`: variáveis JKHero* (por `Window(home).Property(jk_hero)`), includes JKCard, JKToolCard, JKRow.
+  5100 Continuar assistindo · 5150 Por tema · 5050 "Adicionar e organizar" (itens estáticos → `RunPlugin(plugin://plugin.video.ark/?action=organize|open_folder&which=series|filmes|update|help)`) · 5200 Recentes · 5300 Filmes · 5400 Séries · 5500 Suas pastas.
+- `xml/Includes_Ark.xml`: variáveis JKHero* (por `Window(home).Property(jk_hero)`), includes JKCard, JKToolCard, JKRow.
 - Monitor ultrawide 21:9 (2560 de largura): usar âncoras `left/right/bottom`, nunca largura fixa 1920.
 - Ícones em `media/jk/` (PNG 256x256 RGBA: ic_organize, ic_series, ic_filmes, ic_refresh, ic_help).
 
-## Addon `plugin.video.jellykodi` (pluginsource + service)
+## Addon `plugin.video.ark` (pluginsource + service)
 - `service.py`: pular abertura/recap (capítulos do MKV ou marcação L3/F9 por pasta), créditos/próximo episódio com contagem, histórico; a cada 120 s `auto_metadata` (selectaction=2 = retomar sem perguntar; TMDb pt-BR; auto_configure; refresh se precisar).
 - `plugin.py` actions: continue, recent, play, forget, monitor, optimize, update, themes/theme (Por tema), rescrape, organize (`_plan_move`: SxxEyy, NxNN, "Nome - 01", ano), open_folder, help. `_roots()` acha pastas Séries/Filmes pelo **rótulo** da fonte (contém "serie"/"filme").
 - `resources/lib/jk_meta.py`: grava direto na tabela `path` do banco (strContent, strScraper, scanRecursive, useFolderNames, **strSettings com pt-BR**, senão vem em inglês); `ensure_ptbr` para todas as fontes; `refresh_all_ptbr`; scrapers `metadata.themoviedb.org.python` / `metadata.tvshows.themoviedb.org.python`.
-- `resources/lib/jk_common.py`: estado em `special://profile/addon_data/plugin.video.jellykodi/state.json` (load_state/save_state), helpers de vídeo/caminho.
-- Keymap: View → capítulos; L3/R3/F9/F10 → NotifyAll(jellykodi, mark_intro/mark_credits/clear_marks); F8 capítulos.
+- `resources/lib/jk_common.py`: estado em `special://profile/addon_data/plugin.video.ark/state.json` (load_state/save_state), helpers de vídeo/caminho.
+- Keymap: View → capítulos; L3/R3/F9/F10 → NotifyAll(ark, mark_intro/mark_credits/clear_marks); F8 capítulos.
 
 ## Armadilhas conhecidas
 - Kodi recusa VideoLibrary.Clean durante um scan → esperar o scan acabar.
@@ -55,8 +55,8 @@ Plano completo em `C:\Users\LUCAS\.claude\plans\ola-estou-app-de-purrfect-whale.
 Backup do `portable_data/userdata` e da fonte antes das mudanças: pasta `scratchpad` da sessão.
 
 ### Diagnóstico confirmado nesta máquina
-- Código instalado em `C:\Kodi\JellyKodi-Portatil\Kodi\addons\` é **idêntico** ao da fonte; só o número de versão (diz 1.5.0) e os 5 PNGs de `media/jk/` estão velhos.
-- Da Estuary, só 5 arquivos são realmente nossos: `Home.xml`, `Includes_JellyKodi.xml`, `Includes.xml` (1 linha), `Startup.xml`, `View_54_InfoWall.xml`. **Todo XML de player/OSD é Estuary puro** — é de lá que vem o OSD cheio de botões de TV/PVR.
+- Código instalado em `C:\Kodi\Ark\Kodi\addons\` é **idêntico** ao da fonte; só o número de versão (diz 1.5.0) e os 5 PNGs de `media/jk/` estão velhos.
+- Da Estuary, só 5 arquivos são realmente nossos: `Home.xml`, `Includes_Ark.xml`, `Includes.xml` (1 linha), `Startup.xml`, `View_54_InfoWall.xml`. **Todo XML de player/OSD é Estuary puro** — é de lá que vem o OSD cheio de botões de TV/PVR.
 - **Foco pula sozinho na Home:** `JKRow` esconde a fileira quando ela fica vazia (`NumItems>0 | IsUpdating`), e o Kodi joga o foco no `defaultcontrol always="true" 301`. Piora porque `service.py` muda `jk_refresh` a cada `VideoLibrary.OnUpdate` (um por item num scan) e as 3 fileiras de plugin recarregam embaixo do cursor.
 - **Voltar vira "ir pra Home" em tudo:** `<back>ActivateWindow(Home)</back>` está no `<global>` do keymap e só `FullscreenVideo` sobrescreve.
 - **Controle morre no player:** `OverlayButton` (`jk_dialog.py`) é `WindowXMLDialog` com `.show()`, rouba o foco e o `onAction` só trata Back/Pause/Stop — seek, OSD, legenda e áudio são engolidos. O log confirma: `ignoring action ... closing animation is running`.
@@ -72,7 +72,7 @@ cards cada fileira trouxe. `TakeScreenshot` para conferir o visual. **Desligar o
 ### O que já foi feito (v1.7.0, testado nesta máquina em 23/10/2026)
 
 **Navegação da Home**
-- `JKRow` (`Includes_JellyKodi.xml`): a fileira não some mais enquanto está com o foco
+- `JKRow` (`Includes_Ark.xml`): a fileira não some mais enquanto está com o foco
   (`| Control.HasFocus(...)` na condição), ganhou `<onback>301</onback>`, `<onleft>9000</onleft>`
   e `limit` 25 → 40.
 - `Home.xml`: `defaultcontrol` sem `always="true"`; fileiras começam em `top 600` (cabe mais de uma
@@ -157,7 +157,7 @@ Também corrigido: os ícones ▶ e ℹ do destaque ficaram 40 px abaixo dos bot
 O buscador **metadata.tvshows.themoviedb.org.python 1.7+** (o ativo está em
 `portable_data/addons/`, não o antigo de `Kodi/addons/`) **renomeou o ajuste de idioma**:
 quem decide título e sinopse agora é `languageDetails` (e `languageImages`); o `language`
-antigo nem existe mais nesse scraper. O JellyKodi só gravava `language`, então o Kodi pedia
+antigo nem existe mais nesse scraper. O Ark só gravava `language`, então o Kodi pedia
 `language=en-US` ao TMDb e tudo vinha em inglês. O de **filmes** ainda usa `language`.
 
 Como foi provado: `debug.showloginfo=true` + `VideoLibrary.RefreshEpisode` e depois
@@ -219,7 +219,7 @@ diferentes). Talvez devesse agrupar pela pasta da série.
 
 ## v1.8.0 — Organizador automático (23/10/2026)
 
-Arrastou uma pasta para o Downloads? O JellyKodi organiza **sozinho**, sem apertar nada.
+Arrastou uma pasta para o Downloads? O Ark organiza **sozinho**, sem apertar nada.
 
 ### `resources/lib/jk_organize.py` (novo)
 O algoritmo saiu do `plugin.py` para cá porque o **serviço também precisa dele**.
@@ -282,7 +282,7 @@ faria um "desfazer" levar organizações antigas junto. O histórico completo fi
 
 ### Pacote para amigos v1.8 (23/10/2026)
 
-`C:\Users\LUCAS\Downloads\JellyKodi-v1.8-para-amigos.zip` (~90 MB, 4222 arquivos).
+`C:\Users\LUCAS\Downloads\Ark-v1.8.zip` (~90 MB, 4222 arquivos).
 Montado a partir do v1.6, trocando por dentro: addons 1.6.0 → **1.8.0**, keymap novo,
 `guisettings.xml` com os 5 ajustes novos (seekdelay 0, as duas miniaturas de vídeo
 desligadas, sem item `..`, abre no próximo episódio), `LEIA-ME.txt` e `instalar.ps1`.

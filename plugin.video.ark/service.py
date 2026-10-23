@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Serviço JellyKodi: roda em segundo plano enquanto o Kodi está aberto.
+Serviço Ark: roda em segundo plano enquanto o Kodi está aberto.
 
 - "Pular abertura/resumo": pelos capítulos do MKV (Intro, Opening, Abertura, OP, Recap...)
   ou pela marcação manual salva para a pasta (botão L3 do controle, duas vezes).
@@ -78,12 +78,12 @@ class Service(xbmc.Monitor):
         C.ADDON = C.xbmcaddon.Addon(C.ADDON_ID)
 
     def onNotification(self, sender, method, data):
-        # Vem do mapeamento do controle: NotifyAll(jellykodi,mark_intro)
+        # Vem do mapeamento do controle: NotifyAll(ark,mark_intro)
         if method in ('VideoLibrary.OnScanFinished', 'VideoLibrary.OnUpdate') and sender == 'xbmc':
             # um OnUpdate por item: só anota, o laço principal recarrega uma vez no fim
             self.pending_bump = time.time()
             return
-        if sender != 'jellykodi':
+        if sender != 'ark':
             return
         C.log('comando: %s' % method)
         if method.endswith('mark_intro'):
@@ -183,7 +183,7 @@ class Service(xbmc.Monitor):
             if did:
                 kinds = {'movies': 'filmes', 'tvshows': 'séries', 'tvshow_single': 'série'}
                 xbmcgui.Dialog().notification(
-                    'JellyKodi', 'Buscando capas e sinopses: ' + ', '.join('%s (%s)' % (l, kinds[k]) for l, k in did),
+                    'Ark', 'Buscando capas e sinopses: ' + ', '.join('%s (%s)' % (l, kinds[k]) for l, k in did),
                     time=6000, sound=False)
         except Exception as exc:
             C.log('auto_metadata: %s' % exc, xbmc.LOGWARNING)
@@ -226,7 +226,7 @@ class Service(xbmc.Monitor):
             self.org_sig = O.folder_signature(root)
             return
         C.log('organizando sozinho: %d vídeo(s) em %s' % (len(plans), root))
-        xbmcgui.Dialog().notification('JellyKodi', 'Organizando %d vídeo(s)...' % len(plans),
+        xbmcgui.Dialog().notification('Ark', 'Organizando %d vídeo(s)...' % len(plans),
                                       time=4000, sound=False)
         try:
             movidos, _feitos = O.apply_moves(plans)
@@ -243,7 +243,7 @@ class Service(xbmc.Monitor):
         M.auto_configure(st)
         C.save_state(st)
         M.scan()
-        xbmcgui.Dialog().notification('JellyKodi', 'Pronto: %s (%d vídeos)' % (resumo_curto, movidos),
+        xbmcgui.Dialog().notification('Ark', 'Pronto: %s (%d vídeos)' % (resumo_curto, movidos),
                                       time=6000, sound=False)
         C.bump_widgets()
 
@@ -297,7 +297,7 @@ class Service(xbmc.Monitor):
                 if C.setting_bool('auto_skip_intro', False):
                     s.dismissed.add(seg['key'])
                     self.player.seekTime(seg['end'])
-                    xbmcgui.Dialog().notification('JellyKodi', '%s pulada' % seg['what'], time=2500, sound=False)
+                    xbmcgui.Dialog().notification('Ark', '%s pulada' % seg['what'], time=2500, sound=False)
                 else:
                     self.open_dialog('skip', seg, main=seg['label'])
                 return
@@ -427,19 +427,19 @@ class Service(xbmc.Monitor):
         t = self.player.getTime()
         if s.mark_start is None:
             s.mark_start = t
-            xbmcgui.Dialog().notification('JellyKodi', 'Início da abertura marcado (%s). Aperte L3 de novo no fim.' % C.fmt_time(t), time=4000)
+            xbmcgui.Dialog().notification('Ark', 'Início da abertura marcado (%s). Aperte L3 de novo no fim.' % C.fmt_time(t), time=4000)
             return
         start, end = s.mark_start, t
         s.mark_start = None
         if end - start < 5:
-            xbmcgui.Dialog().notification('JellyKodi', 'Marcação cancelada (muito curta).', time=3000)
+            xbmcgui.Dialog().notification('Ark', 'Marcação cancelada (muito curta).', time=3000)
             return
         st = C.load_state()
         st['intros'][s.folder] = {'start': round(start, 1), 'end': round(end, 1)}
         C.save_state(st)
         self._cache = None
         s.dismissed.add(('mark', 0))
-        xbmcgui.Dialog().notification('JellyKodi', 'Abertura salva para esta pasta: %s a %s' % (C.fmt_time(start), C.fmt_time(end)), time=5000)
+        xbmcgui.Dialog().notification('Ark', 'Abertura salva para esta pasta: %s a %s' % (C.fmt_time(start), C.fmt_time(end)), time=5000)
 
     def mark_credits(self):
         s = self.sess
@@ -450,7 +450,7 @@ class Service(xbmc.Monitor):
         st['credits'][s.folder] = round(s.total - t, 1)
         C.save_state(st)
         self._cache = None
-        xbmcgui.Dialog().notification('JellyKodi', 'Créditos marcados: faltando %s em cada episódio desta pasta' % C.fmt_time(s.total - t), time=5000)
+        xbmcgui.Dialog().notification('Ark', 'Créditos marcados: faltando %s em cada episódio desta pasta' % C.fmt_time(s.total - t), time=5000)
 
     def clear_marks(self):
         s = self.sess
@@ -461,7 +461,7 @@ class Service(xbmc.Monitor):
         st['credits'].pop(s.folder, None)
         C.save_state(st)
         self._cache = None
-        xbmcgui.Dialog().notification('JellyKodi', 'Marcações desta pasta apagadas.', time=3000)
+        xbmcgui.Dialog().notification('Ark', 'Marcações desta pasta apagadas.', time=3000)
 
 
 def INTRO(name):
