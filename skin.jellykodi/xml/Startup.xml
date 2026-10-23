@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<!-- JellyKodi: na primeira execução, deixa o menu enxuto (só vídeo).
+	     Tudo pode ser reativado em Configurações > Skin > Itens do menu principal. -->
+	<onload condition="!Skin.HasSetting(jk_initialized)">Skin.SetBool(HomeMenuNoMusicButton)</onload>
+	<onload condition="!Skin.HasSetting(jk_initialized)">Skin.SetBool(HomeMenuNoMusicVideoButton)</onload>
+	<onload condition="!Skin.HasSetting(jk_initialized)">Skin.SetBool(HomeMenuNoTVButton)</onload>
+	<onload condition="!Skin.HasSetting(jk_initialized)">Skin.SetBool(HomeMenuNoRadioButton)</onload>
+	<onload condition="!Skin.HasSetting(jk_initialized)">Skin.SetBool(HomeMenuNoGamesButton)</onload>
+	<onload condition="!Skin.HasSetting(jk_initialized)">Skin.SetBool(HomeMenuNoPicturesButton)</onload>
+	<onload condition="!Skin.HasSetting(jk_initialized)">Skin.SetBool(HomeMenuNoWeatherButton)</onload>
+	<onload condition="!Skin.HasSetting(jk_initialized)">Skin.SetBool(HomeMenuNoProgramsButton)</onload>
+	<onload condition="!Skin.HasSetting(jk_initialized)">Skin.SetBool(jk_initialized)</onload>
+	<onload>ReplaceWindow($INFO[System.StartupWindow])</onload>
+	<controls />
+</window>

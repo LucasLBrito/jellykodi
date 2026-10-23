@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Botão flutuante estilo Netflix (canto inferior direito) -->
+<window>
+	<defaultcontrol always="true">100</defaultcontrol>
+	<animation type="WindowOpen" reversible="false">
+		<effect type="fade" start="0" end="100" time="250" />
+		<effect type="slide" start="60,0" end="0,0" time="250" tween="cubic" easing="out" />
+	</animation>
+	<!-- sem animação ao fechar: ela descartava o primeiro toque do controle -->
+	<controls>
+		<control type="image">
+			<left>1020</left>
+			<top>840</top>
+			<width>900</width>
+			<height>240</height>
+			<texture>jk_shade.png</texture>
+		</control>
+		<control type="label" id="300">
+			<left>700</left>
+			<top>842</top>
+			<width>1140</width>
+			<height>40</height>
+			<align>right</align>
+			<font>font13</font>
+			<textcolor>DDFFFFFF</textcolor>
+			<shadowcolor>FF000000</shadowcolor>
+		</control>
+		<control type="grouplist" id="200">
+			<left>700</left>
+			<top>892</top>
+			<width>1140</width>
+			<height>80</height>
+			<orientation>horizontal</orientation>
+			<align>right</align>
+			<itemgap>20</itemgap>
+			<control type="button" id="101">
+				<width>auto</width>
+				<height>80</height>
+				<textoffsetx>40</textoffsetx>
+				<align>center</align>
+				<aligny>center</aligny>
+				<font>font13</font>
+				<textcolor>FFFFFFFF</textcolor>
+				<focusedcolor>FF101010</focusedcolor>
+				<texturefocus border="24">jk_btn_fo.png</texturefocus>
+				<texturenofocus border="24">jk_btn_nofo.png</texturenofocus>
+			</control>
+			<control type="button" id="100">
+				<width>auto</width>
+				<height>80</height>
+				<textoffsetx>40</textoffsetx>
+				<align>center</align>
+				<aligny>center</aligny>
+				<font>font13</font>
+				<textcolor>FFFFFFFF</textcolor>
+				<focusedcolor>FF101010</focusedcolor>
+				<texturefocus border="24">jk_btn_fo.png</texturefocus>
+				<texturenofocus border="24">jk_btn_nofo.png</texturenofocus>
+			</control>
+		</control>
+	</controls>
+</window>

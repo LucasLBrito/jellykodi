@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- JellyKodi: tela inicial estilo Netflix (variáveis + fileira de cards) -->
+<includes>
+	<variable name="JKHeroTitle">
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5100) + Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.Label]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5050) + Integer.IsGreater(Container(5050).NumItems,0)">$INFO[Container(5050).ListItem.Label]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5150) + Integer.IsGreater(Container(5150).NumItems,0)">$INFO[Container(5150).ListItem.Label]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5200) + Integer.IsGreater(Container(5200).NumItems,0)">$INFO[Container(5200).ListItem.Label]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5300) + Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.Label]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5400) + Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.Label]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5500) + Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.Label]</value>
+		<value condition="Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.Label]</value>
+		<value condition="Integer.IsGreater(Container(5150).NumItems,0)">$INFO[Container(5150).ListItem.Label]</value>
+		<value condition="Integer.IsGreater(Container(5200).NumItems,0)">$INFO[Container(5200).ListItem.Label]</value>
+		<value condition="Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.Label]</value>
+		<value condition="Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.Label]</value>
+		<value condition="Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.Label]</value>
+		<value>Bem-vindo ao JellyKodi</value>
+	</variable>
+	<variable name="JKHeroSub">
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5100) + Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.Label2]$INFO[Container(5100).ListItem.Year,  ,]$INFO[Container(5100).ListItem.Genre,  •  ,]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5050) + Integer.IsGreater(Container(5050).NumItems,0)">$INFO[Container(5050).ListItem.Label2]$INFO[Container(5050).ListItem.Year,  ,]$INFO[Container(5050).ListItem.Genre,  •  ,]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5150) + Integer.IsGreater(Container(5150).NumItems,0)">$INFO[Container(5150).ListItem.Label2]$INFO[Container(5150).ListItem.Year,  ,]$INFO[Container(5150).ListItem.Genre,  •  ,]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5200) + Integer.IsGreater(Container(5200).NumItems,0)">$INFO[Container(5200).ListItem.Label2]$INFO[Container(5200).ListItem.Year,  ,]$INFO[Container(5200).ListItem.Genre,  •  ,]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5300) + Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.Label2]$INFO[Container(5300).ListItem.Year,  ,]$INFO[Container(5300).ListItem.Genre,  •  ,]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5400) + Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.Label2]$INFO[Container(5400).ListItem.Year,  ,]$INFO[Container(5400).ListItem.Genre,  •  ,]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5500) + Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.Label2]$INFO[Container(5500).ListItem.Year,  ,]$INFO[Container(5500).ListItem.Genre,  •  ,]</value>
+		<value condition="Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.Label2]$INFO[Container(5100).ListItem.Year,  ,]$INFO[Container(5100).ListItem.Genre,  •  ,]</value>
+		<value condition="Integer.IsGreater(Container(5150).NumItems,0)">$INFO[Container(5150).ListItem.Label2]$INFO[Container(5150).ListItem.Year,  ,]$INFO[Container(5150).ListItem.Genre,  •  ,]</value>
+		<value condition="Integer.IsGreater(Container(5200).NumItems,0)">$INFO[Container(5200).ListItem.Label2]$INFO[Container(5200).ListItem.Year,  ,]$INFO[Container(5200).ListItem.Genre,  •  ,]</value>
+		<value condition="Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.Label2]$INFO[Container(5300).ListItem.Year,  ,]$INFO[Container(5300).ListItem.Genre,  •  ,]</value>
+		<value condition="Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.Label2]$INFO[Container(5400).ListItem.Year,  ,]$INFO[Container(5400).ListItem.Genre,  •  ,]</value>
+		<value condition="Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.Label2]$INFO[Container(5500).ListItem.Year,  ,]$INFO[Container(5500).ListItem.Genre,  •  ,]</value>
+		<value></value>
+	</variable>
+	<variable name="JKHeroPlot">
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5100) + Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.Plot]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5050) + Integer.IsGreater(Container(5050).NumItems,0)">$INFO[Container(5050).ListItem.Plot]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5150) + Integer.IsGreater(Container(5150).NumItems,0)">$INFO[Container(5150).ListItem.Plot]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5200) + Integer.IsGreater(Container(5200).NumItems,0)">$INFO[Container(5200).ListItem.Plot]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5300) + Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.Plot]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5400) + Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.Plot]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5500) + Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.Plot]</value>
+		<value condition="Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.Plot]</value>
+		<value condition="Integer.IsGreater(Container(5150).NumItems,0)">$INFO[Container(5150).ListItem.Plot]</value>
+		<value condition="Integer.IsGreater(Container(5200).NumItems,0)">$INFO[Container(5200).ListItem.Plot]</value>
+		<value condition="Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.Plot]</value>
+		<value condition="Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.Plot]</value>
+		<value condition="Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.Plot]</value>
+		<value>Adicione a pasta dos seus filmes e séries em [B]Pastas[/B] (menu lá em cima) → [B]Adicionar vídeos…[/B] → [B]Procurar[/B]. Depois que você assistir algo, ele aparece aqui.</value>
+	</variable>
+	<variable name="JKHeroArt">
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5100) + Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.Art(fanart)]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5050) + Integer.IsGreater(Container(5050).NumItems,0)">$INFO[Container(5050).ListItem.Art(fanart)]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5150) + Integer.IsGreater(Container(5150).NumItems,0)">$INFO[Container(5150).ListItem.Art(fanart)]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5200) + Integer.IsGreater(Container(5200).NumItems,0)">$INFO[Container(5200).ListItem.Art(fanart)]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5300) + Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.Art(fanart)]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5400) + Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.Art(fanart)]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5500) + Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.Art(fanart)]</value>
+		<value condition="Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.Art(fanart)]</value>
+		<value condition="Integer.IsGreater(Container(5150).NumItems,0)">$INFO[Container(5150).ListItem.Art(fanart)]</value>
+		<value condition="Integer.IsGreater(Container(5200).NumItems,0)">$INFO[Container(5200).ListItem.Art(fanart)]</value>
+		<value condition="Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.Art(fanart)]</value>
+		<value condition="Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.Art(fanart)]</value>
+		<value condition="Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.Art(fanart)]</value>
+		<value></value>
+	</variable>
+	<variable name="JKHeroPct">
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5100) + Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.PercentPlayed]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5050) + Integer.IsGreater(Container(5050).NumItems,0)">$INFO[Container(5050).ListItem.PercentPlayed]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5150) + Integer.IsGreater(Container(5150).NumItems,0)">$INFO[Container(5150).ListItem.PercentPlayed]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5200) + Integer.IsGreater(Container(5200).NumItems,0)">$INFO[Container(5200).ListItem.PercentPlayed]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5300) + Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.PercentPlayed]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5400) + Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.PercentPlayed]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5500) + Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.PercentPlayed]</value>
+		<value condition="Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.PercentPlayed]</value>
+		<value condition="Integer.IsGreater(Container(5150).NumItems,0)">$INFO[Container(5150).ListItem.PercentPlayed]</value>
+		<value condition="Integer.IsGreater(Container(5200).NumItems,0)">$INFO[Container(5200).ListItem.PercentPlayed]</value>
+		<value condition="Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.PercentPlayed]</value>
+		<value condition="Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.PercentPlayed]</value>
+		<value condition="Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.PercentPlayed]</value>
+		<value>0</value>
+	</variable>
+	<variable name="JKCardArt">
+		<value condition="!String.IsEmpty(ListItem.Art(landscape))">$INFO[ListItem.Art(landscape)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(thumb)) + !String.StartsWith(ListItem.Art(thumb),Default)">$INFO[ListItem.Art(thumb)]</value>
+		<!-- sem imagem deitada: melhor um pôster cortado do que card cinza -->
+		<value>$INFO[ListItem.Art(poster)]</value>
+	</variable>
+	<expression name="jk_card_has_art">[!String.IsEmpty(ListItem.Art(landscape)) | !String.IsEmpty(ListItem.Art(fanart)) | !String.IsEmpty(ListItem.Art(poster)) | [!String.IsEmpty(ListItem.Art(thumb)) + !String.StartsWith(ListItem.Art(thumb),Default)]]</expression>
+
+	<include name="JKCard">
+		<param name="focused">false</param>
+		<definition>
+			<control type="image">
+				<width>340</width>
+				<height>191</height>
+				<texture border="8">jk/card_bg.png</texture>
+			</control>
+			<control type="image">
+				<width>340</width>
+				<height>191</height>
+				<aspectratio>scale</aspectratio>
+				<texture background="true">$VAR[JKCardArt]</texture>
+				<visible>$EXP[jk_card_has_art]</visible>
+			</control>
+			<control type="image">
+				<left>120</left>
+				<top>30</top>
+				<width>100</width>
+				<height>100</height>
+				<aspectratio>keep</aspectratio>
+				<texture>$INFO[ListItem.Icon]</texture>
+				<visible>!$EXP[jk_card_has_art]</visible>
+			</control>
+			<control type="image">
+				<top>91</top>
+				<width>340</width>
+				<height>100</height>
+				<texture>jk/card_fade.png</texture>
+			</control>
+			<control type="label">
+				<left>14</left>
+				<top>118</top>
+				<width>312</width>
+				<height>30</height>
+				<font>font13</font>
+				<textcolor>FFFFFFFF</textcolor>
+				<shadowcolor>FF000000</shadowcolor>
+				<label>$INFO[ListItem.Label]</label>
+				<scroll>$PARAM[focused]</scroll>
+			</control>
+			<control type="label">
+				<left>14</left>
+				<top>154</top>
+				<width>312</width>
+				<height>22</height>
+				<font>font10</font>
+				<textcolor>B3FFFFFF</textcolor>
+				<label>$INFO[ListItem.Label2]</label>
+			</control>
+			<control type="image">
+				<left>0</left>
+				<top>186</top>
+				<width>340</width>
+				<height>5</height>
+				<texture colordiffuse="60FFFFFF">colors/white.png</texture>
+				<visible>Integer.IsGreater(ListItem.PercentPlayed,0)</visible>
+			</control>
+			<control type="progress">
+				<left>0</left>
+				<top>186</top>
+				<width>340</width>
+				<height>5</height>
+				<texturebg></texturebg>
+				<midtexture colordiffuse="button_focus">colors/white.png</midtexture>
+				<info>ListItem.PercentPlayed</info>
+				<visible>Integer.IsGreater(ListItem.PercentPlayed,0)</visible>
+			</control>
+		</definition>
+	</include>
+
+	<include name="JKToolCard">
+		<definition>
+			<control type="image">
+				<width>340</width>
+				<height>191</height>
+				<texture border="8">jk/card_bg.png</texture>
+			</control>
+			<control type="image">
+				<left>20</left>
+				<top>40</top>
+				<width>90</width>
+				<height>90</height>
+				<aspectratio>keep</aspectratio>
+				<texture>$INFO[ListItem.Icon]</texture>
+			</control>
+			<control type="textbox">
+				<left>124</left>
+				<top>22</top>
+				<width>206</width>
+				<height>72</height>
+				<font>font13</font>
+				<textcolor>FFFFFFFF</textcolor>
+				<label>$INFO[ListItem.Label]</label>
+			</control>
+			<control type="textbox">
+				<left>124</left>
+				<top>100</top>
+				<width>206</width>
+				<height>84</height>
+				<font>font10</font>
+				<textcolor>B3FFFFFF</textcolor>
+				<label>$INFO[ListItem.Label2]</label>
+			</control>
+		</definition>
+	</include>
+
+	<include name="JKRow">
+		<param name="visible">true</param>
+		<param name="sortby"></param>
+		<param name="sortorder">ascending</param>
+		<param name="limit">40</param>
+		<definition>
+			<control type="label" id="$PARAM[list_id]1">
+				<left>80</left>
+				<width>1200</width>
+				<height>56</height>
+				<aligny>bottom</aligny>
+				<font>font27</font>
+				<textcolor>FFE5E5E5</textcolor>
+				<label>$PARAM[header]</label>
+				<visible>[$PARAM[visible] + [Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating]] | Control.HasFocus($PARAM[list_id])</visible>
+			</control>
+			<control type="fixedlist" id="$PARAM[list_id]">
+				<left>80</left>
+				<right>0</right>
+				<height>232</height>
+				<orientation>horizontal</orientation>
+				<focusposition>0</focusposition>
+				<movement>4</movement>
+				<scrolltime tween="cubic" easing="out">350</scrolltime>
+				<preloaditems>2</preloaditems>
+				<onleft>9000</onleft>
+				<onback>301</onback>
+				<onfocus>SetProperty(jk_hero,$PARAM[list_id],home)</onfocus>
+				<visible>[$PARAM[visible] + [Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating]] | Control.HasFocus($PARAM[list_id])</visible>
+				<itemlayout width="360" height="232">
+					<control type="group">
+						<top>20</top>
+						<include content="JKCard"/>
+					</control>
+				</itemlayout>
+				<focusedlayout width="360" height="232">
+					<control type="group">
+						<top>20</top>
+						<animation type="Focus" reversible="false">
+							<effect type="zoom" start="100" end="106" center="170,95" time="180" tween="sine" easing="out"/>
+						</animation>
+						<animation type="Unfocus" reversible="false">
+							<effect type="zoom" start="106" end="100" center="170,95" time="150"/>
+						</animation>
+						<include content="JKCard">
+							<param name="focused" value="true"/>
+						</include>
+						<control type="image">
+							<left>-4</left>
+							<top>-4</top>
+							<width>348</width>
+							<height>199</height>
+							<texture border="12">jk/card_fo.png</texture>
+							<visible>Control.HasFocus($PARAM[list_id])</visible>
+						</control>
+					</control>
+				</focusedlayout>
+				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="videos" limit="$PARAM[limit]">$PARAM[content]</content>
+			</control>
+		</definition>
+	</include>
+	<expression name="jk_hero_valid">[String.IsEqual(Window(home).Property(jk_hero),5100) + Integer.IsGreater(Container(5100).NumItems,0)] | [String.IsEqual(Window(home).Property(jk_hero),5150) + Integer.IsGreater(Container(5150).NumItems,0)] | [String.IsEqual(Window(home).Property(jk_hero),5050) + Integer.IsGreater(Container(5050).NumItems,0)] | [String.IsEqual(Window(home).Property(jk_hero),5200) + Integer.IsGreater(Container(5200).NumItems,0)] | [String.IsEqual(Window(home).Property(jk_hero),5300) + Integer.IsGreater(Container(5300).NumItems,0)] | [String.IsEqual(Window(home).Property(jk_hero),5400) + Integer.IsGreater(Container(5400).NumItems,0)] | [String.IsEqual(Window(home).Property(jk_hero),5500) + Integer.IsGreater(Container(5500).NumItems,0)]</expression>
+	<variable name="JKInfoIconColor">
+		<value condition="Control.HasFocus(302)">FF000000</value>
+		<value>FFFFFFFF</value>
+	</variable>
+	<!-- qualquer fileira com conteúdo? (a 5050 tem itens fixos, então na prática é sempre sim) -->
+	<expression name="jk_any_row">[Integer.IsGreater(Container(5050).NumItems,0) | Integer.IsGreater(Container(5100).NumItems,0) | Integer.IsGreater(Container(5150).NumItems,0) | Integer.IsGreater(Container(5200).NumItems,0) | Integer.IsGreater(Container(5300).NumItems,0) | Integer.IsGreater(Container(5400).NumItems,0) | Integer.IsGreater(Container(5500).NumItems,0)]</expression>
+	<!-- fileira que os botões do destaque devem focar: a do jk_hero, senão a primeira com itens -->
+	<variable name="JKHeroRow">
+		<value condition="$EXP[jk_hero_valid]">$INFO[Window(home).Property(jk_hero)]</value>
+		<value condition="Integer.IsGreater(Container(5100).NumItems,0)">5100</value>
+		<value condition="Integer.IsGreater(Container(5150).NumItems,0)">5150</value>
+		<value condition="Integer.IsGreater(Container(5050).NumItems,0)">5050</value>
+		<value condition="Integer.IsGreater(Container(5200).NumItems,0)">5200</value>
+		<value condition="Integer.IsGreater(Container(5300).NumItems,0)">5300</value>
+		<value condition="Integer.IsGreater(Container(5400).NumItems,0)">5400</value>
+		<value condition="Integer.IsGreater(Container(5500).NumItems,0)">5500</value>
+		<value>301</value>
+	</variable>
+	<!-- nome em pt-BR do botão em foco no menu do player -->
+	<variable name="JKOSDHelp">
+		<value condition="Control.HasFocus(87) + Player.Paused">Barra de progresso (pausado): esquerda/direita quadro a quadro</value>
+		<value condition="Control.HasFocus(87)">Barra de progresso: esquerda/direita para voltar/avançar</value>
+		<value condition="Control.HasFocus(600)">Episódio anterior</value>
+		<value condition="Control.HasFocus(601)">Voltar 10 segundos</value>
+		<value condition="Control.HasFocus(602) + Player.Paused">Continuar</value>
+		<value condition="Control.HasFocus(602)">Pausar</value>
+		<value condition="Control.HasFocus(606)">Avançar 10 segundos</value>
+		<value condition="Control.HasFocus(607)">Próximo episódio</value>
+		<value condition="Control.HasFocus(70046)">Legendas</value>
+		<value condition="Control.HasFocus(70049)">Áudio / idioma</value>
+		<value condition="Control.HasFocus(70044)">Capítulos</value>
+		<value condition="Control.HasFocus(603)">Parar (salva onde você parou)</value>
+		<value></value>
+	</variable>
+</includes>

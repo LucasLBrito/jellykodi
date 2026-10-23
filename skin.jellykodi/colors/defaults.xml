@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- JellyKodi: paleta estilo Netflix (preto + vermelho) -->
+<colors>
+	<color name="primary_background">FF141414</color>
+	<color name="secondary_background">01000000</color>
+	<color name="dialog_tint">FF1C1C1C</color>
+	<color name="background">FF141414</color>
+	<color name="bg_image">FF707070</color>
+	<color name="bg_overlay">22FFFFFF</color>
+	<color name="black">FF000000</color>
+	<color name="white">FFF0F0F0</color>
+	<color name="grey">FF9A9A9A</color>
+	<color name="blue">FFE50914</color>
+	<color name="red">FFCE4421</color>
+	<color name="button_focus">FFE50914</color>
+	<color name="button_alt_focus">80E50914</color>
+	<color name="text_shadow">22000000</color>
+	<color name="border_alpha">40FFFFFF</color>
+	<color name="disabled">40FFFFFF</color>
+	<color name="selected">FFE50914</color>
+	<color name="invalid">FFFF0000</color>
+</colors>

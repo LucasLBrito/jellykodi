@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  JellyKodi - mapeamento de controle (layout Xbox / Steam Input "Gamepad")
+  Copie para:  portable_data\userdata\keymaps\
+  Só sobrescreve os botões listados; o resto continua com o padrão do Kodi.
+
+  NO MENU                             NO VÍDEO (tela cheia)
+  A ......... selecionar              A ............ play / pause
+  B ......... voltar                  B ............ parar (o Kodi salva onde parou)
+  X ......... menu de contexto        X ............ próxima legenda  (segurar: liga/desliga)
+  Y ......... informações             Y ............ próximo áudio/idioma
+  Start ..... volta pro vídeo         Start ........ menu do player (OSD)
+  Back/View . voltar                  Back/View .... capítulos com imagem (segurar: info técnica)
+    (segurar: tela inicial)           ← / → ........ voltar / avançar 10s (toques seguidos = pulos maiores)
+  LB / RB ... página acima/abaixo     ↑ ............ barra de progresso e informações
+  LT / RT ... início / fim da lista   ↓ ............ menu do player (OSD)
+                                      LB / RB ...... episódio anterior / próximo da pasta
+                                      LT / RT ...... retroceder / avançar (pressão = velocidade)
+                                      Analógico dir. ↑/↓  volume
+                                      L3 (clicar analógico esq.) 2x . marca início e fim da abertura
+                                      L3 segurado ......... apaga marcações da pasta
+                                      R3 (clicar analógico dir.) .. marca início dos créditos
+  Teclado (no vídeo): F8 = capítulos   F9 = marcar abertura   F10 = marcar créditos
+-->
+
+<keymap>
+  <global>
+    <joystick profile="game.controller.default">
+      <y>Info</y>
+      <!-- Voltar tem que voltar. Segurar é que vai pra tela inicial. -->
+      <back>Back</back>
+      <back holdtime="800">ActivateWindow(Home)</back>
+      <leftbumper>PageUp</leftbumper>
+      <rightbumper>PageDown</rightbumper>
+      <lefttrigger>FirstPage</lefttrigger>
+      <righttrigger>LastPage</righttrigger>
+      <!-- com algo tocando, Start volta pro vídeo em tela cheia -->
+      <start>Fullscreen</start>
+      <rightstick direction="up">VolumeUp</rightstick>
+      <rightstick direction="down">VolumeDown</rightstick>
+    </joystick>
+  </global>
+
+  <!-- na tela inicial, Voltar não faz nada (não fecha o Kodi sem querer) -->
+  <Home>
+    <joystick profile="game.controller.default">
+      <back>noop</back>
+      <back holdtime="800">noop</back>
+    </joystick>
+  </Home>
+
+  <FullscreenVideo>
+    <joystick profile="game.controller.default">
+      <a>PlayPause</a>
+      <b>Stop</b>
+      <x>NextSubtitle</x>
+      <x holdtime="600">ShowSubtitles</x>
+      <y>AudioNextLanguage</y>
+      <start>OSD</start>
+      <back>ActivateWindow(VideoBookmarks)</back>
+      <back holdtime="800">PlayerProcessInfo</back>
+      <left>StepBack</left>
+      <right>StepForward</right>
+      <up>Info</up>
+      <down>OSD</down>
+      <leftbumper>SkipPrevious</leftbumper>
+      <rightbumper>SkipNext</rightbumper>
+      <lefttrigger>AnalogRewind</lefttrigger>
+      <righttrigger>AnalogFastForward</righttrigger>
+      <rightstick direction="up">VolumeUp</rightstick>
+      <rightstick direction="down">VolumeDown</rightstick>
+      <!-- JellyKodi Player: marcar abertura/créditos da pasta (série) -->
+      <leftthumb>NotifyAll(jellykodi,mark_intro)</leftthumb>
+      <leftthumb holdtime="1500">NotifyAll(jellykodi,clear_marks)</leftthumb>
+      <rightthumb>NotifyAll(jellykodi,mark_credits)</rightthumb>
+    </joystick>
+    <keyboard>
+      <f8>ActivateWindow(VideoBookmarks)</f8>
+      <f9>NotifyAll(jellykodi,mark_intro)</f9>
+      <f10>NotifyAll(jellykodi,mark_credits)</f10>
+    </keyboard>
+  </FullscreenVideo>
+
+  <VideoOSD>
+    <joystick profile="game.controller.default">
+      <start>Back</start>
+      <a>Select</a>
+      <b>Back</b>
+      <back>Back</back>
+      <!-- página acima/abaixo não faz sentido aqui -->
+      <leftbumper>noop</leftbumper>
+      <rightbumper>noop</rightbumper>
+      <lefttrigger>noop</lefttrigger>
+      <righttrigger>noop</righttrigger>
+    </joystick>
+  </VideoOSD>
+</keymap>

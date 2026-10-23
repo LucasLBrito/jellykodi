@@ -1,0 +1,89 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en_GB\n"
+
+msgctxt "#30000"
+msgid "Player"
+msgstr ""
+
+msgctxt "#30001"
+msgid "Opening"
+msgstr ""
+
+msgctxt "#30002"
+msgid "Next episode"
+msgstr ""
+
+msgctxt "#30003"
+msgid "Resume"
+msgstr ""
+
+msgctxt "#30010"
+msgid "Skip intro automatically"
+msgstr ""
+
+msgctxt "#30011"
+msgid "Skip without showing the button"
+msgstr ""
+
+msgctxt "#30020"
+msgid "Play next episode automatically"
+msgstr ""
+
+msgctxt "#30021"
+msgid "When the countdown ends"
+msgstr ""
+
+msgctxt "#30022"
+msgid "Countdown (seconds)"
+msgstr ""
+
+msgctxt "#30023"
+msgid "How long the next-episode button counts down"
+msgstr ""
+
+msgctxt "#30024"
+msgid "No credits chapter: show next episode this many seconds before the end (0 = off)"
+msgstr ""
+
+msgctxt "#30025"
+msgid "Only for files named like episodes (S01E02, 1x02, Ep 5)"
+msgstr ""
+
+msgctxt "#30030"
+msgid "Rewind when resuming (seconds)"
+msgstr ""
+
+msgctxt "#30031"
+msgid "Go back a few seconds so you remember where you were"
+msgstr ""
+
+msgctxt "#30004"
+msgid "Home screen"
+msgstr ""
+
+msgctxt "#30040"
+msgid "Thumbnails from the video itself (Kodi 21+)"
+msgstr ""
+
+msgctxt "#30041"
+msgid "Turn off if the home screen gets slow; folder art (poster.jpg/fanart.jpg) is used instead"
+msgstr ""
+
+msgctxt "#30050"
+msgid "Fetch descriptions and artwork from the internet automatically"
+msgstr ""
+
+msgctxt "#30051"
+msgid "Detects movie/series folders and uses Kodi's TMDb scrapers in Brazilian Portuguese"
+msgstr ""
+
+
+msgctxt "#30060"
+msgid "Organize dropped folders automatically"
+msgstr ""
+
+msgctxt "#30061"
+msgid "Watches the downloads folder and files new episodes by itself, a few seconds after the download finishes"
+msgstr ""

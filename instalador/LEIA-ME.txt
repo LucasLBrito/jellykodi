@@ -1,0 +1,173 @@
+===============================================================
+  JELLYKODI  -  Kodi estilo Netflix, em portugues, feito p/ controle
+  Versao 1.8  (Kodi 21.3 "Omega" oficial + JellyKodi)
+===============================================================
+
+O QUE E
+  Um Kodi ja montado e configurado. Voce coloca seus arquivos de
+  video (MKV, MP4...) numa pasta e ele vira uma "Netflix" no seu PC:
+    - tela inicial estilo Netflix (destaque grande + fileiras)
+    - capa, fundo, sinopse e nome dos episodios baixados da internet
+    - "Continuar assistindo" e volta de onde parou sem perguntar
+    - botao "Pular abertura" e "Proximo episodio em 10..."
+    - "Por tema": junta serie e filmes da mesma franquia
+    - organiza SOZINHO: arraste a pasta baixada para o Downloads e
+      ele guarda cada episodio no lugar certo, sem apertar nada
+    - funciona com controle (Xbox, PlayStation, 8BitDo, Steam Deck)
+  Ja vem em portugues. Nao vem nenhum filme/serie: usa os seus arquivos.
+
+PRECISA DE
+  - Windows 10 ou 11, 64 bits
+  - ~250 MB livres (fora os seus videos)
+  - Internet so para baixar capas e sinopses
+
+---------------------------------------------------------------
+ 1. INSTALAR (2 minutos)
+---------------------------------------------------------------
+  1) Clique com o botao direito no ZIP > "Extrair tudo..." > Extrair.
+     (Nao rode de dentro do ZIP. Se o Windows reclamar, use o 7-Zip.)
+  2) Na pasta extraida, de dois cliques em  "INSTALAR JellyKodi.bat".
+     Se aparecer "O Windows protegeu o computador":
+     Mais informacoes > Executar assim mesmo.
+  3) Espere a janela preta terminar. O JellyKodi abre sozinho.
+
+  Ele fica instalado em  C:\Kodi  com esta organizacao:
+     C:\Kodi\JellyKodi-Portatil   o programa (nao mexer)
+     C:\Kodi\Series               suas series
+     C:\Kodi\Filmes               seus filmes
+  E cria o atalho "JellyKodi" na Area de Trabalho.
+
+  * Fica FORA do OneDrive de proposito (videos grandes lotariam a nuvem).
+  * Nao mexe no Kodi que voce talvez ja tenha instalado.
+  * Depois de instalado, pode apagar a pasta extraida e o ZIP.
+
+---------------------------------------------------------------
+ 2. COLOCAR SERIES E FILMES
+---------------------------------------------------------------
+  JEITO FACIL (nao precisa apertar nada)
+    Baixe normalmente para a pasta Downloads. Pode ser a PASTA INTEIRA
+    da serie, do jeito que veio: ele entra nas subpastas sozinho.
+    Uns 30 segundos depois de o download terminar, o JellyKodi guarda
+    cada episodio no lugar certo e avisa na tela. Em 1-2 minutos
+    aparecem capa, fundo e sinopse.
+      - Se os arquivos forem so "01.mkv, 02.mkv", ele usa o NOME DA
+        PASTA como nome da serie.
+      - Pastas "Season 2" / "Temporada 2" viram a temporada certa.
+      - Legenda (.srt) vai junto com o video.
+      - Arquivo ainda baixando nao e tocado: ele espera terminar.
+      - Nao mexe em nada enquanto voce esta assistindo.
+    Prefere apertar um botao? Desca ate "Adicionar e organizar" e use
+    "Organizar Downloads" - ele mostra o resumo e voce confirma.
+    Para desligar o automatico: Configuracoes do add-on JellyKodi >
+    "Organizar sozinho o que cair na pasta de downloads".
+
+    Onde ficam suas pastas? Fileira "Adicionar e organizar" >
+    "Escolher pastas" - da para mudar Series, Filmes e a pasta que ele
+    fica de olho (nao precisa ser o Downloads).
+
+  JEITO MANUAL (copiando voce mesmo)
+    Serie:  C:\Kodi\Series\Nome da Serie\Season 01\Nome da Serie S01E01.mkv
+    Filme:  C:\Kodi\Filmes\Nome do Filme (2021).mkv
+    Depois aperte "Atualizar capas" (ou "Atualizar", no canto de cima).
+
+  PARA AS CAPAS ACERTAREM
+    - Use o nome real da serie/filme (portugues ou ingles).
+    - Episodios com S01E01, S01E02... (ou "Nome - 01" em anime).
+    - Filmes com o ano entre parenteses: Duna (2021).mkv
+    - Nao misture filmes e series na mesma pasta.
+    - Errou a identificacao? Selecione o item, aperte X no controle
+      (ou C no teclado) > "Buscar informacoes de novo".
+    - Ainda errado? Crie um arquivo .txt com o MESMO nome do video,
+      troque a extensao para .nfo e escreva dentro so o link do TMDb,
+      ex.: https://www.themoviedb.org/movie/212162  > "Buscar de novo".
+
+---------------------------------------------------------------
+ 3. USAR
+---------------------------------------------------------------
+  TELA INICIAL
+    Menu de cima:  Inicio | Series | Filmes | Pastas | Pesquisar
+                   Atualizar | Monitor | Otimizar | Configuracoes | Desligar
+    Fileiras: Continuar assistindo, Por tema, Adicionar e organizar,
+              Adicionados recentemente, Filmes, Series, Suas pastas.
+    Seta para cima ate o menu; Assistir toca o item em destaque.
+
+  CONTROLE (padrao Xbox)
+    No menu:  A seleciona | B volta | X menu do item | Y informacoes
+              View volta tambem; SEGURAR View vai para a tela inicial
+              LB/RB pagina acima/abaixo | LT/RT inicio/fim da lista
+              Start volta para o video que estava tocando
+    No video: A play/pause | B parar (lembra onde parou)
+              <- -> volta/avanca 10 s (toques seguidos = pulos maiores)
+              cima: barra de progresso e informacoes | baixo: menu do player
+              LB/RB episodio anterior/proximo | LT/RT retrocede/avanca
+              X legenda | Y audio | Start menu do player
+              View: capitulos com imagem (segurar: info tecnica)
+              L3 2x: marca inicio e fim da abertura (vale p/ pasta toda)
+              R3: marca onde comecam os creditos
+    Menu do player (Start): uma fileira so, com o nome de cada botao
+      em portugues - Anterior, -10s, Play/Pause, +10s, Proximo,
+      Legendas, Audio, Capitulos, Parar.
+  TECLADO
+    Setas, Enter, Backspace (voltar), Espaco (pausa), X (parar),
+    C (menu do item), F8 capitulos, F9 marcar abertura, F10 creditos.
+
+  CONTROLE DE PLAYSTATION / 8BITDO / STEAM DECK
+    Xbox funciona direto. Os outros, o mais facil e pelo Steam:
+    Steam > Adicionar um jogo > Adicionar jogo nao-Steam > Procurar >
+    C:\Kodi\JellyKodi-Portatil\Kodi\kodi.exe
+    Propriedades > Opcoes de inicializacao:  -p      (obrigatorio!)
+    Controle > Steam Input ativado, modelo "Gamepad".
+    8BitDo: coloque no modo X-input (Start+X ao ligar, ou chave em X).
+    Se A e B ficarem trocados: Steam > layout Nintendo liga/desliga.
+
+  PULAR ABERTURA / PROXIMO EPISODIO
+    Aparecem sozinhos quando o MKV tem capitulos (Intro, Opening,
+    Credits...). Sem capitulos: no 1o episodio aperte L3 (ou F9) no
+    comeco e no fim da abertura - vale para todos os episodios da pasta.
+
+---------------------------------------------------------------
+ 4. SE ALGO DER ERRADO
+---------------------------------------------------------------
+  "Falta MSVCP140.dll / VCRUNTIME140.dll"
+      Rode app\Extras\vc_redist_x64.exe (Microsoft) e abra de novo.
+  "Nao consigo extrair o ZIP"
+      Baixe de novo (tamanho certo ~90 MB) ou use o 7-Zip.
+  Video travando
+      Canto superior direito > "Otimizar". Ainda trava? Durante o
+      video segure View (ou tecla O): se "Video decoder" nao tiver
+      (dxva2)/(d3d11) sua placa nao decodifica esse formato.
+  Abre no monitor errado (2 monitores)
+      Canto superior direito > "Monitor" > escolha a tela.
+  Ele organizou errado / quero os arquivos de volta
+      Em C:\Kodi tem "Desfazer organizacao.bat": devolve para a pasta
+      de origem os videos da ULTIMA organizacao.
+      Para desligar o automatico: Configuracoes do add-on JellyKodi >
+      "Organizar sozinho o que cair na pasta de downloads".
+  Ele nao organizou minha pasta
+      Espere ~30 s depois que o download terminar (ele so mexe quando o
+      arquivo para de crescer) e nao pode estar com video tocando.
+      Se os arquivos nao tiverem numero nenhum no nome, ele nao adivinha:
+      renomeie para 01.mkv, 02.mkv... ou use S01E01.
+  Sinopse em ingles
+      O JellyKodi pede tudo em portugues. Quando continua em ingles ou
+      japones e porque o TMDb nao tem esse texto traduzido (comum em
+      anime pouco conhecido) - nao tem o que fazer.
+  Capas nao aparecem
+      Precisa de internet. Aperte "Atualizar capas" e espere 2 minutos.
+  Atualizar para uma versao nova do JellyKodi
+      Rode o "INSTALAR JellyKodi.bat" da versao nova. Mantem suas
+      configuracoes, historico e biblioteca.
+  Desinstalar
+      Apague a pasta C:\Kodi\JellyKodi-Portatil e o atalho.
+      (C:\Kodi\Series e C:\Kodi\Filmes sao seus videos: apague so se quiser.)
+  Log para pedir ajuda
+      C:\Kodi\JellyKodi-Portatil\Kodi\portable_data\kodi.log
+
+---------------------------------------------------------------
+ CREDITOS E LICENCA
+---------------------------------------------------------------
+  Kodi e software livre (GPL-2.0) - https://kodi.tv
+  Codigo-fonte: https://github.com/xbmc/xbmc
+  Skin JellyKodi derivada da Estuary (CC BY-SA 4.0 / GPL-2.0).
+  Informacoes e imagens: The Movie Database (TMDb) - https://www.themoviedb.org
+  JellyKodi por Lucas. Este pacote nao contem filmes nem series.

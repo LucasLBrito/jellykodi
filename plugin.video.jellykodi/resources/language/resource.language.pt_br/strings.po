@@ -1,0 +1,89 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: pt_BR\n"
+
+msgctxt "#30000"
+msgid "Player"
+msgstr "Player"
+
+msgctxt "#30001"
+msgid "Opening"
+msgstr "Abertura"
+
+msgctxt "#30002"
+msgid "Next episode"
+msgstr "Próximo episódio"
+
+msgctxt "#30003"
+msgid "Resume"
+msgstr "Retomar"
+
+msgctxt "#30010"
+msgid "Skip intro automatically"
+msgstr "Pular abertura automaticamente"
+
+msgctxt "#30011"
+msgid "Skip without showing the button"
+msgstr "Pula sem mostrar o botão"
+
+msgctxt "#30020"
+msgid "Play next episode automatically"
+msgstr "Tocar o próximo episódio automaticamente"
+
+msgctxt "#30021"
+msgid "When the countdown ends"
+msgstr "Quando a contagem terminar"
+
+msgctxt "#30022"
+msgid "Countdown (seconds)"
+msgstr "Contagem regressiva (segundos)"
+
+msgctxt "#30023"
+msgid "How long the next-episode button counts down"
+msgstr "Quanto tempo o botão de próximo episódio conta"
+
+msgctxt "#30024"
+msgid "No credits chapter: show next episode this many seconds before the end (0 = off)"
+msgstr "Sem capítulo de créditos: mostrar próximo episódio X segundos antes do fim (0 = desligado)"
+
+msgctxt "#30025"
+msgid "Only for files named like episodes (S01E02, 1x02, Ep 5)"
+msgstr "Só para arquivos com nome de episódio (S01E02, 1x02, Ep 5)"
+
+msgctxt "#30030"
+msgid "Rewind when resuming (seconds)"
+msgstr "Voltar ao retomar (segundos)"
+
+msgctxt "#30031"
+msgid "Go back a few seconds so you remember where you were"
+msgstr "Volta alguns segundos para você lembrar onde parou"
+
+msgctxt "#30004"
+msgid "Home screen"
+msgstr "Tela inicial"
+
+msgctxt "#30040"
+msgid "Thumbnails from the video itself (Kodi 21+)"
+msgstr "Miniaturas com um quadro do próprio vídeo (Kodi 21+)"
+
+msgctxt "#30041"
+msgid "Turn off if the home screen gets slow; folder art (poster.jpg/fanart.jpg) is used instead"
+msgstr "Desligue se a tela inicial ficar lenta; aí usa a arte da pasta (poster.jpg/fanart.jpg)"
+
+msgctxt "#30050"
+msgid "Fetch descriptions and artwork from the internet automatically"
+msgstr "Buscar sinopses e capas na internet automaticamente"
+
+msgctxt "#30051"
+msgid "Detects movie/series folders and uses Kodi's TMDb scrapers in Brazilian Portuguese"
+msgstr "Detecta pastas de filmes/séries e usa os buscadores TMDb do Kodi em português"
+
+
+msgctxt "#30060"
+msgid "Organize dropped folders automatically"
+msgstr "Organizar sozinho o que cair na pasta de downloads"
+
+msgctxt "#30061"
+msgid "Watches the downloads folder and files new episodes by itself, a few seconds after the download finishes"
+msgstr "Fica de olho na pasta de downloads e guarda os episódios sozinho, alguns segundos depois que o download termina"
