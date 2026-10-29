@@ -14,7 +14,7 @@
 		<description lang="en_GB">Works with plain folders (no library needed). Detects intro/credits from MKV chapters or per-folder manual marks, and shows Netflix-style skip and next-episode buttons.</description>
 		<platform>all</platform>
 		<license>GPL-2.0-or-later</license>
-		<source>https://github.com/LucasLBrito/ark</source>
+		<source>https://github.com/LucasLBrito/jellykodi</source>
 		<assets>
 			<icon>resources/icon.png</icon>
 		</assets>

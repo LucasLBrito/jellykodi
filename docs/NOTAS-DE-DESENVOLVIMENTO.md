@@ -1,4 +1,9 @@
-# Ark — contexto para Claude Code
+# Diário de desenvolvimento (1.6 → 1.8)
+
+> Anotações escritas **durante** o trabalho, em ordem cronológica, mantidas como histórico
+> das decisões. Algumas coisas aqui já mudaram. A visão organizada e atual está em
+> [ARQUITETURA.md](ARQUITETURA.md) e o passo a passo para desenvolver em
+> [DESENVOLVIMENTO.md](DESENVOLVIMENTO.md).
 
 Kodi 21.3 "Omega" **portátil** (Windows) personalizado estilo Netflix/Jellyfin, em pt-BR, feito para controle (Xbox/8BitDo/Steam). Dono: Lucas (fala português; responder em PT-BR, linguagem simples). Sempre **testar todas as navegações** depois de mudar algo.
 
@@ -51,7 +56,7 @@ Copiar as pastas do addon/skin por cima das instaladas e reiniciar o Kodi (ou `R
 
 ## Ponto de situação — v1.7 (22/10/2026, em andamento)
 
-Plano completo em `C:\Users\LUCAS\.claude\plans\ola-estou-app-de-purrfect-whale.md` (aprovado).
+Plano completo aprovado numa sessão de trabalho (não versionado).
 Backup do `portable_data/userdata` e da fonte antes das mudanças: pasta `scratchpad` da sessão.
 
 ### Diagnóstico confirmado nesta máquina
@@ -282,7 +287,7 @@ faria um "desfazer" levar organizações antigas junto. O histórico completo fi
 
 ### Pacote para amigos v1.8 (23/10/2026)
 
-`C:\Users\LUCAS\Downloads\Ark-v1.8.zip` (~90 MB, 4222 arquivos).
+`Ark-v1.8.zip` (~90 MB, 4222 arquivos).
 Montado a partir do v1.6, trocando por dentro: addons 1.6.0 → **1.8.0**, keymap novo,
 `guisettings.xml` com os 5 ajustes novos (seekdelay 0, as duas miniaturas de vídeo
 desligadas, sem item `..`, abre no próximo episódio), `LEIA-ME.txt` e `instalar.ps1`.
