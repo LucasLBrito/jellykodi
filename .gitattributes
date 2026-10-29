@@ -6,3 +6,7 @@
 *.jpg binary
 *.xbt binary
 *.ttf binary
+*.iss text eol=crlf
+*.bmp binary
+*.ico binary
+*.exe binary
