@@ -410,6 +410,27 @@
 							<onclick>RunPlugin(plugin://plugin.video.ark/?action=update)</onclick>
 						</item>
 						<item>
+							<label>Nao identificados</label>
+							<label2>O que eu nao consegui reconhecer</label2>
+							<icon>jk/ic_folder.png</icon>
+							<thumb>jk/ic_folder.png</thumb>
+							<onclick>RunPlugin(plugin://plugin.video.ark/?action=open_unknown)</onclick>
+						</item>
+						<item>
+							<label>Capas que faltam</label>
+							<label2>Busca capa e sinopse do que ficou sem</label2>
+							<icon>jk/ic_refresh.png</icon>
+							<thumb>jk/ic_refresh.png</thumb>
+							<onclick>RunPlugin(plugin://plugin.video.ark/?action=fetch_meta)</onclick>
+						</item>
+						<item>
+							<label>Testar modelo local</label>
+							<label2>Escolhe o modelo que roda neste PC</label2>
+							<icon>jk/ic_organize.png</icon>
+							<thumb>jk/ic_organize.png</thumb>
+							<onclick>RunPlugin(plugin://plugin.video.ark/?action=test_model)</onclick>
+						</item>
+						<item>
 							<label>Como adicionar</label>
 							<label2>Passo a passo rápido</label2>
 							<icon>jk/ic_help.png</icon>

@@ -23,6 +23,9 @@ from resources.lib.jk_dialog import OverlayButton
 # segundos que a pasta precisa ficar parada antes de mexer (download/cópia terminando)
 ESPERA_ESTAVEL = 30
 
+# Abaixo disto o organizador automático não aplica nada por conta própria
+CONFIANCA_SOZINHO = 0.8
+
 
 class Session(object):
     """Estado do vídeo que está tocando agora."""
@@ -218,20 +221,37 @@ class Service(xbmc.Monitor):
         if not series_root and not filmes_root:
             return
         try:
-            plans = O.plan_folder(root, series_root, filmes_root)
+            grupos = O.plan_groups(root, series_root, filmes_root)
         except Exception as exc:
             C.log('auto_organize (plano): %s' % exc, xbmc.LOGERROR)
             return
+
+        # O serviço nunca sai para a internet e nunca chama modelo de linguagem: aqui
+        # não há ninguém na frente da tela para autorizar nada nem para corrigir um
+        # palpite errado. Então ele aplica só o que o nome do arquivo deixou claro, e
+        # guarda o resto para a pessoa olhar na tela de organizar.
+        seguros = [g for g in grupos
+                   if g.tipo != 'desconhecido' and g.confianca >= CONFIANCA_SOZINHO]
+        duvidosos = [g for g in grupos if g not in seguros and g.a_organizar()]
+        self._anotar_revisao(duvidosos)
+
+        plans = O.planos(seguros)
         if not plans:
             self.org_sig = O.folder_signature(root)
+            if duvidosos:
+                xbmcgui.Dialog().notification(
+                    'Ark', '%d pasta(s) para você conferir em Organizar' % len(duvidosos),
+                    time=6000, sound=False)
             return
-        C.log('organizando sozinho: %d vídeo(s) em %s' % (len(plans), root))
+        C.log('organizando sozinho: %d vídeo(s) em %s (%d para revisar)'
+              % (len(plans), root, len(duvidosos)))
         xbmcgui.Dialog().notification('Ark', 'Organizando %d vídeo(s)...' % len(plans),
                                       time=4000, sound=False)
         try:
             movidos, _feitos = O.apply_moves(plans)
+            M.semear_metadados(seguros)
         except Exception as exc:
-            C.log('auto_organize (mover): %s' % exc, xbmc.LOGERROR)
+            C.log('auto_organize (organizar): %s' % exc, xbmc.LOGERROR)
             self.org_sig = O.folder_signature(root)
             return
         self.org_sig = O.folder_signature(root)
@@ -243,9 +263,23 @@ class Service(xbmc.Monitor):
         M.auto_configure(st)
         C.save_state(st)
         M.scan()
-        xbmcgui.Dialog().notification('Ark', 'Pronto: %s (%d vídeos)' % (resumo_curto, movidos),
-                                      time=6000, sound=False)
+        recado = 'Pronto: %s (%d vídeos)' % (resumo_curto, movidos)
+        if duvidosos:
+            recado += ' · %d para conferir' % len(duvidosos)
+        xbmcgui.Dialog().notification('Ark', recado, time=6000, sound=False)
         C.bump_widgets()
+
+    def _anotar_revisao(self, duvidosos):
+        """Deixa o número de pendências no state e numa property da tela inicial."""
+        quantos = len(duvidosos)
+        try:
+            C.HOME.setProperty('ark_revisar', str(quantos) if quantos else '')
+        except Exception:
+            pass
+        st = C.load_state()
+        if st.get('fila_revisao') != quantos:
+            st['fila_revisao'] = quantos
+            C.save_state(st)
 
     def run(self):
         C.log('serviço iniciado')

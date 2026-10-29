@@ -295,3 +295,142 @@ def library_index():
                 d['year'] = d['firstaired'][:4]
             idx[path.lower()] = d
     return idx
+
+
+# ---------------------------------------------------------------- capa e sinopse
+TMDB_SITE = 'https://www.themoviedb.org'
+
+
+def _escapar(texto):
+    return (str(texto or '')
+            .replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;'))
+
+
+def _ja_e_nosso(caminho):
+    """Só mexemos em .nfo que o próprio Ark escreveu."""
+    return caminho in (C.load_state().get('nfos_ark') or [])
+
+
+def _anotar_nfo(caminho):
+    st = C.load_state()
+    lista = st.get('nfos_ark') or []
+    if caminho not in lista:
+        lista.append(caminho)
+        st['nfos_ark'] = lista[-2000:]
+        C.save_state(st)
+
+
+def _gravar(caminho, texto):
+    if os.path.exists(caminho) and not _ja_e_nosso(caminho):
+        # .nfo que o usuário (ou outro programa) pôs ali manda mais que o nosso
+        return False
+    try:
+        os.makedirs(os.path.dirname(caminho), exist_ok=True)
+        with open(caminho, 'w', encoding='utf-8') as fh:
+            fh.write(texto)
+        _anotar_nfo(caminho)
+        return True
+    except Exception as exc:
+        C.log('não gravei %s: %s' % (caminho, exc), xbmc.LOGWARNING)
+        return False
+
+
+def nfo_ponteiro(caminho, tmdb_id, serie):
+    """.nfo com só o link do TMDb.
+
+    É a forma mais segura: o Kodi reconhece um .nfo que contém apenas uma URL e manda
+    o scraper buscar aquele id — ou seja, nós resolvemos a identificação (a parte que
+    o scraper erra quando o nome do arquivo está sujo) e ele continua trazendo sinopse,
+    elenco, arte e nomes de episódio em pt-BR. Um .nfo *completo* faria o contrário:
+    o Kodi ignoraria o scraper e ficaria preso ao que escrevemos.
+
+    É a mesma dica que o Ark já dá ao usuário na ajuda e no LEIA-ME.
+    """
+    url = '%s/%s/%s' % (TMDB_SITE, 'tv' if serie else 'movie', tmdb_id)
+    return _gravar(caminho, url + '\n')
+
+
+def nfo_completo(caminho, dados, serie):
+    """.nfo de verdade, para o que o TMDb não acha (anime obscuro que só o AniList tem).
+
+    Aqui tomar o volante é o certo: sem isto o item fica sem capa e sem sinopse.
+    """
+    raiz = 'tvshow' if serie else 'movie'
+    linhas = ['<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>',
+              '<%s>' % raiz,
+              '  <title>%s</title>' % _escapar(dados.get('titulo'))]
+    if dados.get('ano'):
+        linhas.append('  <year>%s</year>' % _escapar(dados['ano']))
+        if not serie:
+            linhas.append('  <premiered>%s-01-01</premiered>' % _escapar(dados['ano']))
+    if dados.get('sinopse'):
+        linhas.append('  <plot>%s</plot>' % _escapar(dados['sinopse']))
+    for tipo, valor in (dados.get('ids') or {}).items():
+        if valor:
+            linhas.append('  <uniqueid type="%s">%s</uniqueid>'
+                          % (_escapar(tipo), _escapar(valor)))
+    linhas.append('</%s>' % raiz)
+    return _gravar(caminho, '\n'.join(linhas) + '\n')
+
+
+def baixar_arte(pasta, dados):
+    """poster.jpg e fanart.jpg na pasta, com os nomes que C.folder_art já procura.
+
+    Nunca sobrescreve: se já existe arte local, ou se o TMDb é a fonte (e portanto o
+    Kodi vai baixar a dele), não encostamos.
+    """
+    from resources.lib import jk_net as N
+    if not C.setting_bool('meta_download_art', True):
+        return 0
+    quantas = 0
+    for chave, nome in (('poster', 'poster.jpg'), ('fanart', 'fanart.jpg')):
+        url = (dados or {}).get(chave)
+        alvo = os.path.join(pasta, nome)
+        if not url or os.path.exists(alvo):
+            continue
+        if N.baixar(url, alvo):
+            quantas += 1
+    if quantas:
+        C._FOLDER_ART.clear()     # o cache de arte por pasta ficou velho
+    return quantas
+
+
+def semear_metadados(grupos, progresso=None):
+    """Põe .nfo (e arte quando precisa) ao lado do que acabou de ser organizado.
+
+    Roda ANTES do M.scan(): é o scan que lê o .nfo. Devolve quantos grupos receberam
+    alguma coisa.
+    """
+    if not C.setting_bool('meta_write_nfo', True):
+        return 0
+    feitos = 0
+    uteis = [g for g in grupos or [] if not g.pular and g.tipo != 'desconhecido']
+    for i, g in enumerate(uteis):
+        if progresso:
+            progresso(i, len(uteis), g.titulo)
+        itens = [it for it in g.itens if it.destino]
+        if not itens:
+            continue
+        serie = g.tipo in ('serie', 'misto')
+        dados = dict(g.meta or {})
+        dados.setdefault('titulo', g.titulo)
+        dados.setdefault('ano', g.ano)
+        ids = dados.get('ids') or {}
+
+        if serie:
+            # <series_root>/<Show>/Season NN/arquivo -> queremos <series_root>/<Show>
+            pasta = os.path.dirname(os.path.dirname(itens[0].destino))
+            alvo = os.path.join(pasta, 'tvshow.nfo')
+        else:
+            pasta = os.path.dirname(itens[0].destino)
+            alvo = os.path.join(pasta, 'movie.nfo')
+
+        if ids.get('tmdb'):
+            if nfo_ponteiro(alvo, ids['tmdb'], serie):
+                feitos += 1
+            continue                      # o scraper do Kodi traz o resto em pt-BR
+        if ids.get('anilist') or dados.get('sinopse'):
+            if nfo_completo(alvo, dados, serie):
+                feitos += 1
+            baixar_arte(pasta, dados)
+    return feitos

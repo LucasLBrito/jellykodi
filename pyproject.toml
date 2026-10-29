@@ -1,0 +1,32 @@
+# Configuracao das ferramentas de desenvolvimento. O addon em si roda dentro do Kodi
+# (Python 3.8+ embutido) e nao e instalado por pip.
+[project]
+name = "ark"
+version = "1.9.0"
+description = "Central de midia estilo Netflix para arquivos locais, feita para controle (Kodi 21)"
+requires-python = ">=3.8"
+license = "GPL-2.0-or-later"
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+target-version = "py38"
+line-length = 110
+extend-exclude = ["skin.ark"]
+
+[tool.ruff.lint]
+# Lint leve: so o que costuma ser bug de verdade (sintaxe, nome indefinido,
+# import sem uso, variavel sem uso) e erros de indentacao.
+select = ["E9", "F", "E7", "B006", "B008"]
+ignore = ["E731", "E741"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/kodi_stubs/*" = ["N"]

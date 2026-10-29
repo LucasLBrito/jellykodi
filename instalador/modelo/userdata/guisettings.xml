@@ -1,0 +1,18 @@
+<settings version="2">
+    <setting id="lookandfeel.skin">skin.ark</setting>
+    <setting id="locale.language">resource.language.pt_br</setting>
+    <setting id="locale.country">Brazil</setting>
+    <setting id="videoplayer.adjustrefreshrate">2</setting>
+    <setting id="videoplayer.usedisplayasclock">true</setting>
+    <setting id="videoplayer.seekdelay">0</setting>
+    <setting id="filecache.buffermode">1</setting>
+    <setting id="filecache.memorysize">256</setting>
+    <setting id="filecache.readfactor">1000</setting>
+    <setting id="videolibrary.backgroundupdate">true</setting>
+    <setting id="videolibrary.updateonstartup">true</setting>
+    <setting id="videolibrary.tvshowsselectfirstunwatcheditem">2</setting>
+    <setting id="myvideos.selectaction">2</setting>
+    <setting id="myvideos.extractthumb">false</setting>
+    <setting id="myvideos.extractchapterthumbs">false</setting>
+    <setting id="filelists.showparentdiritems">false</setting>
+</settings>

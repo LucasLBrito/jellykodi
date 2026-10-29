@@ -8,6 +8,10 @@
 	</animation>
 	<!-- sem animação ao fechar: ela descartava o primeiro toque do controle -->
 	<controls>
+		<!-- Sobe quando a barra de progresso ou o menu do player aparecem: antes o botão e a
+		     sombra ficavam por cima da barra e ela parecia cortada em duas. -->
+		<control type="group">
+		<animation effect="slide" start="0,0" end="0,-330" time="200" tween="cubic" easing="out" condition="Window.IsVisible(seekbar) | Window.IsVisible(videoosd)">Conditional</animation>
 		<control type="image">
 			<left>1020</left>
 			<top>840</top>
@@ -57,6 +61,7 @@
 				<texturefocus border="24">jk_btn_fo.png</texturefocus>
 				<texturenofocus border="24">jk_btn_nofo.png</texturenofocus>
 			</control>
+		</control>
 		</control>
 	</controls>
 </window>

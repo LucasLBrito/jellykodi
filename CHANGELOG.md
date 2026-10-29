@@ -1,5 +1,37 @@
 # Histórico de versões
 
+## 1.9.0
+
+**Descobre o nome certo sozinho.** Antes de organizar, o Ark pesquisa cada série ou filme
+uma vez só (não uma vez por episódio):
+- **AniList** — grátis, sem chave, a melhor base para anime
+- **TMDb** — opcional, com a sua própria chave nos ajustes; sinopse em português
+- **IA local** (Ollama ou LM Studio) — último recurso para nomes muito bagunçados. Roda no seu
+  computador: nada sai da máquina e não custa nada. Desligada por padrão.
+
+**Tela "Organizar"**: à esquerda o que ele achou, à direita para onde vai. Dá para corrigir o
+título, pular uma série ou aprovar tudo de uma vez, pelo controle.
+
+**Três jeitos de organizar**: atalho (*hardlink* — o download fica onde está e não gasta espaço
+a mais), cópia ou mover. O que não foi identificado vai para `_Nao_Identificado` com o nome
+original, em vez de virar um "filme" errado.
+
+**Livro-razão** (`organizados.json`): o Ark lembra o que já organizou e não religa um episódio
+que você apagou da biblioteca de propósito.
+
+**Capas e .nfo**: grava um `.nfo` ao lado do vídeo e baixa a capa quando o Kodi não acha nenhuma.
+
+**Player**
+- Uma barra de progresso só (a do topo aparecia junto e duplicava)
+- O menu do player não tem mais animação de fechar: durante ela o Kodi descartava as teclas e
+  pausar/avançar "falhavam"
+- Botões −10 s / +10 s do menu voltaram a funcionar
+- O botão "Pular abertura" não repete mais o que o Kodi já faz sozinho (a pausa ligava e
+  desligava na mesma hora)
+
+**Projeto**: instalador `Ark-Setup-1.9.0.exe` (Inno Setup) com desinstalador, testes
+automáticos do organizador e CI no GitHub Actions.
+
 ## 1.8.0
 
 **Organiza sozinho.** Arraste a pasta para o Downloads e pronto — não precisa apertar nada.

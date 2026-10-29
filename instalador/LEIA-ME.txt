@@ -1,6 +1,6 @@
 ===============================================================
   ARK  -  Kodi estilo Netflix, em portugues, feito p/ controle
-  Versao 1.8  (Kodi 21.3 "Omega" oficial + Ark)
+  Versao 1.9  (Kodi 21.3 "Omega" oficial + Ark)
 ===============================================================
 
 O QUE E
@@ -13,6 +13,8 @@ O QUE E
     - "Por tema": junta serie e filmes da mesma franquia
     - organiza SOZINHO: arraste a pasta baixada para o Downloads e
       ele guarda cada episodio no lugar certo, sem apertar nada
+    - descobre o nome certo da serie pela internet (AniList e TMDb)
+      quando o nome do arquivo esta baguncado
     - funciona com controle (Xbox, PlayStation, 8BitDo, Steam Deck)
   Ja vem em portugues. Nao vem nenhum filme/serie: usa os seus arquivos.
 
@@ -24,22 +26,25 @@ PRECISA DE
 ---------------------------------------------------------------
  1. INSTALAR (2 minutos)
 ---------------------------------------------------------------
-  1) Clique com o botao direito no ZIP > "Extrair tudo..." > Extrair.
-     (Nao rode de dentro do ZIP. Se o Windows reclamar, use o 7-Zip.)
-  2) Na pasta extraida, de dois cliques em  "INSTALAR Ark.bat".
+  1) Baixe o  Ark-Setup-1.9.0.exe  e de dois cliques.
      Se aparecer "O Windows protegeu o computador":
      Mais informacoes > Executar assim mesmo.
-  3) Espere a janela preta terminar. O Ark abre sozinho.
+     (O Setup nao e assinado digitalmente; isso so quer dizer que o
+     Windows ainda nao conhece o programa.)
+  2) Avancar > Avancar > Instalar. Nao precisa ser administrador.
+  3) No fim, deixe marcado "Abrir o Ark agora".
 
   Ele fica instalado em  C:\Kodi  com esta organizacao:
-     C:\Kodi\Ark   o programa (nao mexer)
-     C:\Kodi\Series               suas series
-     C:\Kodi\Filmes               seus filmes
-  E cria o atalho "Ark" na Area de Trabalho.
+     C:\Kodi\Ark      o programa (nao mexer)
+     C:\Kodi\Series   suas series
+     C:\Kodi\Filmes   seus filmes
+     C:\Kodi\Desfazer organizacao.bat
+  E cria o atalho "Ark" na Area de Trabalho e no menu Iniciar.
 
   * Fica FORA do OneDrive de proposito (videos grandes lotariam a nuvem).
   * Nao mexe no Kodi que voce talvez ja tenha instalado.
-  * Depois de instalado, pode apagar a pasta extraida e o ZIP.
+  * Se o computador nao tiver o Visual C++ da Microsoft, o Setup
+    instala sozinho (pode pedir permissao de administrador so para isso).
 
 ---------------------------------------------------------------
  2. COLOCAR SERIES E FILMES
@@ -129,9 +134,7 @@ PRECISA DE
  4. SE ALGO DER ERRADO
 ---------------------------------------------------------------
   "Falta MSVCP140.dll / VCRUNTIME140.dll"
-      Rode app\Extras\vc_redist_x64.exe (Microsoft) e abra de novo.
-  "Nao consigo extrair o ZIP"
-      Baixe de novo (tamanho certo ~90 MB) ou use o 7-Zip.
+      Rode o Setup de novo: ele instala o Visual C++ que falta.
   Video travando
       Canto superior direito > "Otimizar". Ainda trava? Durante o
       video segure View (ou tecla O): se "Video decoder" nao tiver
@@ -139,8 +142,8 @@ PRECISA DE
   Abre no monitor errado (2 monitores)
       Canto superior direito > "Monitor" > escolha a tela.
   Ele organizou errado / quero os arquivos de volta
-      Em C:\Kodi tem "Desfazer organizacao.bat": devolve para a pasta
-      de origem os videos da ULTIMA organizacao.
+      Em C:\Kodi tem "Desfazer organizacao.bat": desfaz a ULTIMA
+      organizacao (devolve os videos ou apaga os atalhos que ele criou).
       Para desligar o automatico: Configuracoes do add-on Ark >
       "Organizar sozinho o que cair na pasta de downloads".
   Ele nao organizou minha pasta
@@ -155,11 +158,12 @@ PRECISA DE
   Capas nao aparecem
       Precisa de internet. Aperte "Atualizar capas" e espere 2 minutos.
   Atualizar para uma versao nova do Ark
-      Rode o "INSTALAR Ark.bat" da versao nova. Mantem suas
-      configuracoes, historico e biblioteca.
+      Rode o Setup da versao nova. Mantem suas configuracoes,
+      historico e biblioteca.
   Desinstalar
-      Apague a pasta C:\Kodi\Ark e o atalho.
-      (C:\Kodi\Series e C:\Kodi\Filmes sao seus videos: apague so se quiser.)
+      Configuracoes do Windows > Aplicativos > Ark > Desinstalar.
+      Ele pergunta se apaga tambem configuracoes e historico.
+      Seus videos (C:\Kodi\Series e C:\Kodi\Filmes) NUNCA sao apagados.
   Log para pedir ajuda
       C:\Kodi\Ark\Kodi\portable_data\kodi.log
 
@@ -170,4 +174,5 @@ PRECISA DE
   Codigo-fonte: https://github.com/xbmc/xbmc
   Skin Ark derivada da Estuary (CC BY-SA 4.0 / GPL-2.0).
   Informacoes e imagens: The Movie Database (TMDb) - https://www.themoviedb.org
-  Ark por Lucas. Este pacote nao contem filmes nem series.
+  Ark por Lucas Brito - https://github.com/LucasLBrito/jellykodi
+  Este pacote nao contem filmes nem series.

@@ -700,41 +700,258 @@ def _tidy_once():
     tidy_library()
 
 
+def _autorizar_modelo(grupos):
+    """Pede autorização para rodar o modelo de linguagem na máquina do usuário.
+
+    O modelo é dele e roda no computador dele: ninguém liga isso por conta própria.
+    A pergunta sai a cada organização, não é "lembrar para sempre" — gastar a CPU
+    da pessoa por meia hora sem ela saber não é uma escolha nossa para fazer.
+    """
+    from resources.lib import jk_llm as LLM
+    if not C.setting_bool('llm_on', False) or not LLM.modelo():
+        return False
+    candidatos = len([g for g in grupos
+                      if g.tipo == 'desconhecido' or g.confianca < 0.8])
+    if not candidatos:
+        return False
+    espera = C.setting_int('llm_timeout', 120) or 120
+    teto = min(candidatos, LLM.teto())
+    return xbmcgui.Dialog().yesno(
+        'Usar o seu modelo local?',
+        'Tenho %d título(s) que a busca na web não resolveu.[CR]'
+        'Posso perguntar ao modelo [B]%s[/B], que roda neste computador.[CR][CR]'
+        '[COLOR FFFFCC66]Isso vai usar a CPU/placa de vídeo da máquina e pode pesar: '
+        'até %d segundo(s) por título, ou seja uns %d minuto(s) no pior caso.[/COLOR]'
+        % (candidatos, LLM.modelo(), espera, max(1, teto * espera // 60)),
+        yeslabel='Pode usar', nolabel='Não usar agora')
+
+
+def _identificar(grupos, series_root, filmes_root, barra, usar_llm):
+    """Procura o título certo de cada grupo, com progresso e cancelamento."""
+    from resources.lib import jk_llm as LLM
+    from resources.lib import jk_lookup as L
+    LLM.zerar()
+    total = len(grupos)
+    for i, g in enumerate(grupos):
+        if barra.iscanceled():
+            # cancelar não aborta tudo: segue com o que o nome do arquivo já disse
+            C.log('identificação cancelada em %d de %d' % (i, total))
+            break
+        barra.update(int(i * 100 / max(total, 1)),
+                     'Procurando: %s[CR]%d de %d' % (g.titulo_bruto, i + 1, total))
+        try:
+            achado = L.resolver(g, usar_llm=usar_llm)
+        except Exception as exc:
+            C.log('identificação de "%s": %s' % (g.titulo_bruto, exc), xbmc.LOGWARNING)
+            continue
+        if achado:
+            O.aplicar_achado(g, achado, series_root, filmes_root)
+
+
+def _montar_grupos(series_root, filmes_root):
+    """Monta o plano com tela de carregamento. None = deu erro e já avisei."""
+    downloads = _downloads_root()
+    barra = xbmcgui.DialogProgress()
+    barra.create('Ark', 'Procurando vídeos em %s[CR]'
+                        'Em pasta grande isso pode levar um tempinho.' % downloads)
+    try:
+        grupos = O.plan_groups(downloads, series_root, filmes_root)
+    except Exception as exc:
+        barra.close()
+        C.log('não consegui montar o plano: %s' % exc, xbmc.LOGERROR)
+        xbmcgui.Dialog().ok('Ark', 'Deu erro ao procurar os vídeos:[CR]%s' % exc)
+        return None
+    barra.close()
+
+    if not grupos or not C.setting_bool('lookup_online', True):
+        return grupos
+
+    # a autorização do modelo é perguntada com a barra fechada, senão fica atrás dela
+    usar_llm = _autorizar_modelo(grupos)
+    barra = xbmcgui.DialogProgress()
+    barra.create('Ark', 'Descobrindo os títulos de verdade...[CR]%s'
+                 % ('Usando o modelo local — pode demorar.' if usar_llm
+                    else 'Consultando AniList e TMDB.'))
+    try:
+        _identificar(grupos, series_root, filmes_root, barra, usar_llm)
+    finally:
+        barra.close()
+    return grupos
+
+
+def _confirmar_resumo(grupos, series_root, filmes_root):
+    """O Sim/Não de sempre, para quem desligou a tela de revisão."""
+    plans = O.planos(grupos)
+    # Nada de multiselect aqui: a skin (como a Estuary) não desenha visto nenhum, dava
+    # para desmarcar sem perceber e o arquivo ficava para trás.
+    linhas = O.resumo(plans, series_root, filmes_root)
+    resto = ''
+    if len(linhas) > 4:   # o diálogo Sim/Não do Kodi só mostra 4 linhas e corta o resto calado
+        resto = '[CR]... e mais %d pasta(s)' % (len(linhas) - 3)
+        linhas = linhas[:3]
+    return xbmcgui.Dialog().yesno('Organizar %d vídeo(s)' % len(plans),
+                                  '%s%s' % ('[CR]'.join(linhas), resto),
+                                  yeslabel='Organizar', nolabel='Agora não')
+
+
+def _aplicar_grupos(grupos, series_root, filmes_root):
+    plans = O.planos(grupos)
+    if not plans:
+        return
+    barra = xbmcgui.DialogProgress()
+    barra.create('Ark', 'Organizando %d arquivo(s)...' % len(plans))
+
+    def andar(i, total, nome):
+        barra.update(int(i * 80 / max(total, 1)), nome)
+        return not barra.iscanceled()
+
+    try:
+        movidos, _feitos = O.apply_moves(plans, progresso=andar)
+        barra.update(85, 'Gravando capas e descrições...')
+        M.semear_metadados(grupos)
+    finally:
+        barra.close()
+
+    st = C.load_state()
+    M.scrapers_to_portuguese(st)
+    M.auto_configure(st)
+    C.save_state(st)
+    M.scan()
+    # curto de propósito: a caixa de notificação do Kodi corta o começo do texto
+    xbmcgui.Dialog().notification('Ark', '%d vídeo(s) organizados' % movidos,
+                                  time=5000, sound=False)
+    C.bump_widgets()
+
+
 def organize_downloads():
     series_root, filmes_root = _roots()
     if not series_root and not filmes_root:
         xbmcgui.Dialog().ok('Ark', 'Não achei as pastas Séries/Filmes cadastradas no Kodi.')
         return
-    plans = O.plan_folder(_downloads_root(), _tidy(series_root), _tidy(filmes_root))
-    if not plans:
+    series_root, filmes_root = _tidy(series_root), _tidy(filmes_root)
+
+    grupos = _montar_grupos(series_root, filmes_root)
+    if grupos is None:
+        return
+    if not grupos or not O.planos(grupos):
         xbmcgui.Dialog().ok('Ark', 'Nenhum vídeo novo para organizar.[CR][CR]'
                             'Pode arrastar a pasta inteira da série para a pasta de downloads: '
                             'o Ark entra nas subpastas e usa o nome da pasta quando o '
                             'nome do arquivo não diz qual é a série.')
         _tidy_once()
         return
-    # Resumo agrupado por série/temporada. Nada de multiselect aqui: a skin (como a Estuary)
-    # não desenha visto nenhum, dava para desmarcar sem perceber e o arquivo ficava para trás.
-    linhas = O.resumo(plans, _tidy(series_root), _tidy(filmes_root))
-    resto = ''
-    if len(linhas) > 4:   # o diálogo Sim/Não do Kodi só mostra 4 linhas e corta o resto calado
-        resto = '[CR]... e mais %d pasta(s)' % (len(linhas) - 3)
-        linhas = linhas[:3]
-    if not xbmcgui.Dialog().yesno('Organizar %d vídeo(s)' % len(plans),
-                                  '%s%s' % ('[CR]'.join(linhas), resto),
-                                  yeslabel='Organizar', nolabel='Agora não'):
-        return
-    moved, _feitos = O.apply_moves(plans)
-    st = C.load_state()
-    M.scrapers_to_portuguese(st)
-    M.auto_configure(st)
-    C.save_state(st)
-    M.scan()
-    xbmcgui.Dialog().notification('Ark', '%d vídeo(s) organizados. Buscando capas e sinopses...' % moved,
-                                  time=6000, sound=False)
-    C.bump_widgets()
 
+    if C.setting_bool('review_before_apply', True):
+        from resources.lib import jk_browser as B
+        resultado, grupos = B.Organizador.abrir(grupos, series_root, filmes_root)
+        if resultado != 'organizar':
+            return
+    elif not _confirmar_resumo(grupos, series_root, filmes_root):
+        return
+
+    _aplicar_grupos(grupos, series_root, filmes_root)
     _tidy_once()
+
+
+def fetch_meta():
+    """Segunda passada: capa e descrição para o que já está na biblioteca.
+
+    Olha cada pasta de série/filme que ainda não tem .nfo nem capa local, procura o
+    título e grava a semente. Não encosta no que o TMDb já acertou.
+    """
+    from resources.lib import jk_lookup as L
+    series_root, filmes_root = _roots()
+    pendentes = []
+    for raiz, serie in ((_tidy(series_root), True), (_tidy(filmes_root), False)):
+        if not raiz or not os.path.isdir(raiz):
+            continue
+        for nome in sorted(os.listdir(raiz), key=C.natural_key):
+            pasta = os.path.join(raiz, nome)
+            if not os.path.isdir(pasta):
+                continue
+            if os.path.exists(os.path.join(pasta, 'tvshow.nfo' if serie else 'movie.nfo')):
+                continue
+            if (C.folder_art(pasta + os.sep) or {}).get('poster'):
+                continue
+            pendentes.append((pasta, nome, serie))
+
+    if not pendentes:
+        xbmcgui.Dialog().ok('Ark', 'Tudo que está na biblioteca já tem capa ou '
+                                   'identificação. Nada a fazer.')
+        return
+    if not xbmcgui.Dialog().yesno(
+            'Buscar capas e descrições',
+            'Achei %d pasta(s) sem capa nem identificação.[CR][CR]'
+            'Vou procurar cada uma no AniList e no TMDB. Pode demorar alguns '
+            'minutos.' % len(pendentes),
+            yeslabel='Procurar', nolabel='Agora não'):
+        return
+
+    barra = xbmcgui.DialogProgress()
+    barra.create('Ark', 'Buscando capas e descrições...')
+    feitos = 0
+    try:
+        for i, (pasta, nome, serie) in enumerate(pendentes):
+            if barra.iscanceled():
+                break
+            barra.update(int(i * 100 / len(pendentes)),
+                         '%s[CR]%d de %d' % (nome, i + 1, len(pendentes)))
+            g = O.Grupo(O.norm(nome), nome)
+            g.tipo = 'serie' if serie else 'filme'
+            achado = L.resolver(g, usar_llm=False)
+            if not achado:
+                continue
+            alvo = os.path.join(pasta, 'tvshow.nfo' if serie else 'movie.nfo')
+            ids = achado.get('ids') or {}
+            if ids.get('tmdb'):
+                feitos += 1 if M.nfo_ponteiro(alvo, ids['tmdb'], serie) else 0
+            else:
+                feitos += 1 if M.nfo_completo(alvo, achado, serie) else 0
+                M.baixar_arte(pasta, achado)
+    finally:
+        barra.close()
+
+    if feitos:
+        M.scan()
+        C.bump_widgets()
+    xbmcgui.Dialog().notification('Ark', '%d item(ns) identificados.' % feitos,
+                                  time=6000, sound=False)
+
+
+def open_unknown():
+    """Abre a pasta dos não identificados no explorador do sistema."""
+    pasta = os.path.join(O.log_dir(), O.UNKNOWN_DIR)
+    if not os.path.isdir(pasta):
+        xbmcgui.Dialog().ok('Ark', 'Ainda não há nada sem identificar — a pasta '
+                                   '%s nem existe.' % O.UNKNOWN_DIR)
+        return
+    _abrir_no_sistema(pasta)
+
+
+def test_model():
+    """Lista os modelos que o servidor local tem e deixa escolher um."""
+    from resources.lib import jk_llm as LLM
+    barra = xbmcgui.DialogProgressBG()
+    barra.create('Ark', 'Falando com %s...' % LLM.base_url())
+    try:
+        nomes = LLM.modelos()
+    finally:
+        barra.close()
+    if not nomes:
+        xbmcgui.Dialog().ok(
+            'Ark', 'Não achei nenhum servidor de modelo em:[CR][B]%s[/B][CR][CR]'
+                   'Abra o Ollama (ou o LM Studio) e confira o endereço nas '
+                   'configurações do Ark.' % LLM.base_url())
+        return
+    escolha = xbmcgui.Dialog().select('Qual modelo usar?', nomes)
+    if escolha < 0:
+        return
+    C.ADDON.setSetting('llm_model', nomes[escolha])
+    C.ADDON.setSettingBool('llm_on', True)
+    xbmcgui.Dialog().ok('Ark', 'Vou usar o [B]%s[/B].[CR][CR]'
+                               'Ele só é chamado quando o AniList e o TMDB não '
+                               'resolvem, e sempre pedindo sua autorização antes.'
+                        % nomes[escolha])
 
 
 def open_folder():
@@ -742,6 +959,10 @@ def open_folder():
     path = series_root if PARAMS.get('which') == 'series' else filmes_root
     if not path:
         return
+    _abrir_no_sistema(path)
+
+
+def _abrir_no_sistema(path):
     try:
         import subprocess
         if sys.platform.startswith('win'):
@@ -776,7 +997,8 @@ na tela inicial. O Ark coloca cada vídeo na pasta certa e busca capa, fundo e s
 
 
 ROUTES = {'organize': organize_downloads, 'open_folder': open_folder, 'help': show_help, 'folders': choose_folders, 'rescrape': rescrape, 'themes': list_themes, 'theme': list_theme, 'continue': list_continue, 'update': update_info, 'recent': list_recent, 'play': play, 'forget': forget,
-          'monitor': choose_monitor, 'optimize': optimize_mkv}
+          'monitor': choose_monitor, 'optimize': optimize_mkv,
+          'fetch_meta': fetch_meta, 'open_unknown': open_unknown, 'test_model': test_model}
 
 if __name__ == '__main__':
     ROUTES.get(PARAMS.get('action'), list_root)()

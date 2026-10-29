@@ -1,12 +1,47 @@
+# Python
 __pycache__/
-*.pyc
-*.pyo
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+.coverage
+htmlcov/
 
-# o zip pronto nao entra no repositorio: vai como "release"
+# Dados pessoais do Kodi: NUNCA entram no repositorio
+portable_data/
+addon_data/
+userdata/Database/
+userdata/Thumbnails/
+userdata/addon_data/
+userdata/guisettings.xml
+userdata/sources.xml
+userdata/advancedsettings.xml
+userdata/profiles.xml
+state.json
+state.json.*
+*.db
+*.db-journal
+kodi.log
+kodi.old.log
+*.log
+organizacao-log.csv
+organizacao-historico.csv
+.env
+.env.*
+
+# Kodi portatil (179 MB) e saida do instalador: montados pelo instalador/montar.ps1
+instalador/build/
+instalador/saida/
+instalador/cache/
+Kodi/
+*.exe
 *.zip
+*.7z
 Ark-v*-para-amigos/
 
 # coisas de maquina
 Thumbs.db
 desktop.ini
 .DS_Store
+.vscode/
+.idea/

@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Organizador: à esquerda o que achei no Downloads, à direita como vai ficar.
+     Só usa texturas da própria pasta media/ do addon: nome de textura resolve pela
+     skin ativa, e um jk/*.png da skin.ark não existiria em nenhuma outra skin. -->
+<window>
+	<defaultcontrol always="true">410</defaultcontrol>
+	<animation type="WindowOpen" reversible="false">
+		<effect type="fade" start="0" end="100" time="200" />
+	</animation>
+	<!-- sem animação ao fechar: ela descartava o primeiro toque do controle
+	     (mesma armadilha do script-ark-overlay.xml) -->
+	<controls>
+
+		<!-- fundo quase opaco -->
+		<control type="image">
+			<left>0</left>
+			<top>0</top>
+			<width>1920</width>
+			<height>1080</height>
+			<texture colordiffuse="FF0B0B0F">jk_panel.png</texture>
+		</control>
+
+		<!-- título -->
+		<control type="label" id="400">
+			<left>60</left>
+			<top>44</top>
+			<width>1800</width>
+			<height>52</height>
+			<font>font30</font>
+			<textcolor>FFFFFFFF</textcolor>
+			<shadowcolor>FF000000</shadowcolor>
+		</control>
+
+		<!-- cabeçalhos das colunas -->
+		<control type="label" id="401">
+			<left>60</left>
+			<top>112</top>
+			<width>740</width>
+			<height>34</height>
+			<font>font13</font>
+			<textcolor>99FFFFFF</textcolor>
+			<label>O que eu achei no Downloads</label>
+		</control>
+		<control type="label" id="402">
+			<left>840</left>
+			<top>112</top>
+			<width>700</width>
+			<height>34</height>
+			<font>font13</font>
+			<textcolor>99FFFFFF</textcolor>
+			<label>Como vai ficar na biblioteca</label>
+		</control>
+
+		<!-- painel da esquerda -->
+		<control type="image">
+			<left>50</left>
+			<top>150</top>
+			<width>760</width>
+			<height>710</height>
+			<texture colordiffuse="30FFFFFF">jk_panel.png</texture>
+		</control>
+		<control type="list" id="410">
+			<left>60</left>
+			<top>160</top>
+			<width>740</width>
+			<height>690</height>
+			<onright>420</onright>
+			<ondown>451</ondown>
+			<itemlayout height="76" width="740">
+				<control type="image">
+					<left>8</left>
+					<top>8</top>
+					<width>100</width>
+					<height>60</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true">$INFO[ListItem.Art(thumb)]</texture>
+				</control>
+				<control type="label">
+					<left>124</left>
+					<top>6</top>
+					<width>604</width>
+					<height>38</height>
+					<font>font13</font>
+					<textcolor>DDFFFFFF</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+				<control type="label">
+					<left>124</left>
+					<top>42</top>
+					<width>604</width>
+					<height>30</height>
+					<font>font12</font>
+					<textcolor>88FFFFFF</textcolor>
+					<label>$INFO[ListItem.Label2]</label>
+				</control>
+			</itemlayout>
+			<focusedlayout height="76" width="740">
+				<control type="image">
+					<left>0</left>
+					<top>2</top>
+					<width>740</width>
+					<height>72</height>
+					<texture border="24">jk_btn_fo.png</texture>
+					<visible>Control.HasFocus(410)</visible>
+				</control>
+				<control type="image">
+					<left>8</left>
+					<top>8</top>
+					<width>100</width>
+					<height>60</height>
+					<aspectratio>keep</aspectratio>
+					<texture background="true">$INFO[ListItem.Art(thumb)]</texture>
+				</control>
+				<control type="label">
+					<left>124</left>
+					<top>6</top>
+					<width>604</width>
+					<height>38</height>
+					<font>font13</font>
+					<textcolor>FFFFFFFF</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+				<control type="label">
+					<left>124</left>
+					<top>42</top>
+					<width>604</width>
+					<height>30</height>
+					<font>font12</font>
+					<textcolor>AAFFFFFF</textcolor>
+					<label>$INFO[ListItem.Label2]</label>
+				</control>
+			</focusedlayout>
+		</control>
+
+		<!-- painel da direita -->
+		<control type="image">
+			<left>830</left>
+			<top>150</top>
+			<width>720</width>
+			<height>710</height>
+			<texture colordiffuse="30FFFFFF">jk_panel.png</texture>
+		</control>
+		<control type="list" id="420">
+			<left>840</left>
+			<top>160</top>
+			<width>700</width>
+			<height>690</height>
+			<onleft>410</onleft>
+			<ondown>451</ondown>
+			<itemlayout height="64" width="700">
+				<control type="label">
+					<left>12</left>
+					<top>2</top>
+					<width>676</width>
+					<height>34</height>
+					<font>font13</font>
+					<textcolor>DDFFFFFF</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+				<control type="label">
+					<left>12</left>
+					<top>34</top>
+					<width>676</width>
+					<height>28</height>
+					<font>font12</font>
+					<textcolor>88FFFFFF</textcolor>
+					<label>$INFO[ListItem.Label2]</label>
+				</control>
+			</itemlayout>
+			<focusedlayout height="64" width="700">
+				<control type="image">
+					<left>0</left>
+					<top>0</top>
+					<width>700</width>
+					<height>62</height>
+					<texture border="24">jk_btn_fo.png</texture>
+					<visible>Control.HasFocus(420)</visible>
+				</control>
+				<control type="label">
+					<left>12</left>
+					<top>2</top>
+					<width>676</width>
+					<height>34</height>
+					<font>font13</font>
+					<textcolor>FFFFFFFF</textcolor>
+					<label>$INFO[ListItem.Label]</label>
+				</control>
+				<control type="label">
+					<left>12</left>
+					<top>34</top>
+					<width>676</width>
+					<height>28</height>
+					<font>font12</font>
+					<textcolor>AAFFFFFF</textcolor>
+					<label>$INFO[ListItem.Label2]</label>
+				</control>
+			</focusedlayout>
+		</control>
+
+		<!-- capa e sinopse do grupo em foco -->
+		<control type="image">
+			<left>1580</left>
+			<top>150</top>
+			<width>280</width>
+			<height>400</height>
+			<texture colordiffuse="30FFFFFF">jk_panel.png</texture>
+			<!-- sem capa a moldura vazia parece defeito: o Python avisa aqui -->
+			<visible>!String.IsEmpty(Window.Property(ark_capa))</visible>
+		</control>
+		<control type="image" id="430">
+			<left>1580</left>
+			<top>150</top>
+			<width>280</width>
+			<height>400</height>
+			<aspectratio>keep</aspectratio>
+			<texture background="true"></texture>
+		</control>
+		<control type="textbox" id="440">
+			<left>1580</left>
+			<top>568</top>
+			<width>280</width>
+			<height>292</height>
+			<font>font12</font>
+			<textcolor>AAFFFFFF</textcolor>
+			<autoscroll time="3000" delay="6000" repeat="8000">true</autoscroll>
+		</control>
+
+		<!-- ações -->
+		<control type="grouplist" id="450">
+			<left>60</left>
+			<top>890</top>
+			<width>1800</width>
+			<height>80</height>
+			<orientation>horizontal</orientation>
+			<itemgap>16</itemgap>
+			<onup>410</onup>
+			<control type="button" id="451">
+				<width>auto</width>
+				<height>72</height>
+				<textoffsetx>32</textoffsetx>
+				<align>center</align>
+				<aligny>center</aligny>
+				<font>font13</font>
+				<textcolor>FFFFFFFF</textcolor>
+				<focusedcolor>FF101010</focusedcolor>
+				<texturefocus border="24">jk_btn_fo.png</texturefocus>
+				<texturenofocus border="24">jk_btn_nofo.png</texturenofocus>
+			</control>
+			<control type="button" id="452">
+				<width>auto</width>
+				<height>72</height>
+				<textoffsetx>32</textoffsetx>
+				<align>center</align>
+				<aligny>center</aligny>
+				<font>font13</font>
+				<textcolor>FFFFFFFF</textcolor>
+				<focusedcolor>FF101010</focusedcolor>
+				<texturefocus border="24">jk_btn_fo.png</texturefocus>
+				<texturenofocus border="24">jk_btn_nofo.png</texturenofocus>
+			</control>
+			<control type="button" id="453">
+				<width>auto</width>
+				<height>72</height>
+				<textoffsetx>32</textoffsetx>
+				<align>center</align>
+				<aligny>center</aligny>
+				<font>font13</font>
+				<textcolor>FFFFFFFF</textcolor>
+				<focusedcolor>FF101010</focusedcolor>
+				<texturefocus border="24">jk_btn_fo.png</texturefocus>
+				<texturenofocus border="24">jk_btn_nofo.png</texturenofocus>
+			</control>
+			<control type="button" id="454">
+				<width>auto</width>
+				<height>72</height>
+				<textoffsetx>32</textoffsetx>
+				<align>center</align>
+				<aligny>center</aligny>
+				<font>font13</font>
+				<textcolor>FFFFFFFF</textcolor>
+				<focusedcolor>FF101010</focusedcolor>
+				<texturefocus border="24">jk_btn_fo.png</texturefocus>
+				<texturenofocus border="24">jk_btn_nofo.png</texturenofocus>
+			</control>
+			<control type="button" id="455">
+				<width>auto</width>
+				<height>72</height>
+				<textoffsetx>32</textoffsetx>
+				<align>center</align>
+				<aligny>center</aligny>
+				<font>font13</font>
+				<textcolor>FFFFFFFF</textcolor>
+				<focusedcolor>FF101010</focusedcolor>
+				<texturefocus border="24">jk_btn_fo.png</texturefocus>
+				<texturenofocus border="24">jk_btn_nofo.png</texturenofocus>
+			</control>
+		</control>
+
+		<!-- rodapé: o que vai ser feito -->
+		<control type="label" id="460">
+			<left>60</left>
+			<top>986</top>
+			<width>1800</width>
+			<height>40</height>
+			<font>font12</font>
+			<textcolor>99FFFFFF</textcolor>
+		</control>
+
+	</controls>
+</window>
