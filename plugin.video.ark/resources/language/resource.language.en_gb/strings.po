@@ -87,3 +87,127 @@ msgstr ""
 msgctxt "#30061"
 msgid "Watches the downloads folder and files new episodes by itself, a few seconds after the download finishes"
 msgstr ""
+
+msgctxt "#30005"
+msgid "Organizing"
+msgstr ""
+
+msgctxt "#30006"
+msgid "Identifying"
+msgstr ""
+
+msgctxt "#30100"
+msgid "What to do with the downloaded files"
+msgstr ""
+
+msgctxt "#30101"
+msgid "Shortcut leaves the download where it is and uses no extra space; it only works within the same disk"
+msgstr ""
+
+msgctxt "#30102"
+msgid "Show me the plan before organizing"
+msgstr ""
+
+msgctxt "#30103"
+msgid "Opens a screen with what was found on the left and where it goes on the right"
+msgstr ""
+
+msgctxt "#30104"
+msgid "One folder for each movie"
+msgstr ""
+
+msgctxt "#30105"
+msgid "Needed to keep the cover, the backdrop and the description next to the movie"
+msgstr ""
+
+msgctxt "#30106"
+msgid "Put what I could not identify in a separate folder"
+msgstr ""
+
+msgctxt "#30107"
+msgid "Creates _Nao_Identificado next to Series and Filmes, keeping the original file names"
+msgstr ""
+
+msgctxt "#30110"
+msgid "Search the web for the right title"
+msgstr ""
+
+msgctxt "#30111"
+msgid "Uses AniList (free, no key needed) and TMDB; without this only the file name counts"
+msgstr ""
+
+msgctxt "#30112"
+msgid "Your TMDB key (optional)"
+msgstr ""
+
+msgctxt "#30113"
+msgid "Free at themoviedb.org. Improves movies and series that are not anime, with descriptions in Portuguese"
+msgstr ""
+
+msgctxt "#30114"
+msgid "Write a .nfo next to the video"
+msgstr ""
+
+msgctxt "#30115"
+msgid "Tells Kodi exactly which title it is, so it stops guessing from the file name"
+msgstr ""
+
+msgctxt "#30116"
+msgid "Download the cover when Kodi cannot find one"
+msgstr ""
+
+msgctxt "#30117"
+msgid "Only for what TMDb does not have; never replaces artwork that is already there"
+msgstr ""
+
+msgctxt "#30120"
+msgid "Use a language model running on this computer"
+msgstr ""
+
+msgctxt "#30121"
+msgid "Last resort for very messy names. It runs on your own machine, so it costs nothing, but it is HEAVY: it can take a minute per title"
+msgstr ""
+
+msgctxt "#30122"
+msgid "Address of the local server"
+msgstr ""
+
+msgctxt "#30123"
+msgid "Ollama uses http://localhost:11434/v1 and LM Studio http://localhost:1234/v1"
+msgstr ""
+
+msgctxt "#30124"
+msgid "Model name"
+msgstr ""
+
+msgctxt "#30125"
+msgid "The same name the server shows, for example qwen2.5:7b. Use \"Testar modelo local\" on the home screen to pick from a list"
+msgstr ""
+
+msgctxt "#30126"
+msgid "Maximum queries each time"
+msgstr ""
+
+msgctxt "#30127"
+msgid "Keeps a folder full of unknown names from taking forever"
+msgstr ""
+
+msgctxt "#30128"
+msgid "Seconds to wait for each answer"
+msgstr ""
+
+msgctxt "#30129"
+msgid "Raise this if your model is big or the computer is slow"
+msgstr ""
+
+msgctxt "#30130"
+msgid "Shortcut (uses no extra space)"
+msgstr ""
+
+msgctxt "#30131"
+msgid "Copy (uses twice the space)"
+msgstr ""
+
+msgctxt "#30132"
+msgid "Move (empties the downloads folder)"
+msgstr ""

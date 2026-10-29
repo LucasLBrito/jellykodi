@@ -87,3 +87,127 @@ msgstr "Organizar sozinho o que cair na pasta de downloads"
 msgctxt "#30061"
 msgid "Watches the downloads folder and files new episodes by itself, a few seconds after the download finishes"
 msgstr "Fica de olho na pasta de downloads e guarda os episódios sozinho, alguns segundos depois que o download termina"
+
+msgctxt "#30005"
+msgid "Organizing"
+msgstr "Organizar"
+
+msgctxt "#30006"
+msgid "Identifying"
+msgstr "Identificar"
+
+msgctxt "#30100"
+msgid "What to do with the downloaded files"
+msgstr "O que fazer com os arquivos baixados"
+
+msgctxt "#30101"
+msgid "Shortcut leaves the download where it is and uses no extra space; it only works within the same disk"
+msgstr "Atalho deixa o download onde está e não gasta espaço a mais; só funciona dentro do mesmo disco"
+
+msgctxt "#30102"
+msgid "Show me the plan before organizing"
+msgstr "Me mostrar o plano antes de organizar"
+
+msgctxt "#30103"
+msgid "Opens a screen with what was found on the left and where it goes on the right"
+msgstr "Abre uma tela com o que eu achei à esquerda e para onde vai à direita"
+
+msgctxt "#30104"
+msgid "One folder for each movie"
+msgstr "Uma pasta para cada filme"
+
+msgctxt "#30105"
+msgid "Needed to keep the cover, the backdrop and the description next to the movie"
+msgstr "Preciso disso para guardar a capa, o fundo e a descrição ao lado do filme"
+
+msgctxt "#30106"
+msgid "Put what I could not identify in a separate folder"
+msgstr "Pôr o que eu não identifiquei numa pasta separada"
+
+msgctxt "#30107"
+msgid "Creates _Nao_Identificado next to Series and Filmes, keeping the original file names"
+msgstr "Cria a pasta _Nao_Identificado ao lado de Séries e Filmes, mantendo os nomes originais dos arquivos"
+
+msgctxt "#30110"
+msgid "Search the web for the right title"
+msgstr "Procurar na web o título certo"
+
+msgctxt "#30111"
+msgid "Uses AniList (free, no key needed) and TMDB; without this only the file name counts"
+msgstr "Usa o AniList (grátis, sem precisar de chave) e o TMDB; sem isso vale só o nome do arquivo"
+
+msgctxt "#30112"
+msgid "Your TMDB key (optional)"
+msgstr "Sua chave do TMDB (opcional)"
+
+msgctxt "#30113"
+msgid "Free at themoviedb.org. Improves movies and series that are not anime, with descriptions in Portuguese"
+msgstr "Grátis em themoviedb.org. Melhora filmes e séries que não são anime, com sinopse em português"
+
+msgctxt "#30114"
+msgid "Write a .nfo next to the video"
+msgstr "Gravar um .nfo ao lado do vídeo"
+
+msgctxt "#30115"
+msgid "Tells Kodi exactly which title it is, so it stops guessing from the file name"
+msgstr "Diz ao Kodi exatamente qual é o título, para ele parar de adivinhar pelo nome do arquivo"
+
+msgctxt "#30116"
+msgid "Download the cover when Kodi cannot find one"
+msgstr "Baixar a capa quando o Kodi não acha nenhuma"
+
+msgctxt "#30117"
+msgid "Only for what TMDb does not have; never replaces artwork that is already there"
+msgstr "Só para o que o TMDb não tem; nunca substitui a arte que já está lá"
+
+msgctxt "#30120"
+msgid "Use a language model running on this computer"
+msgstr "Usar um modelo de linguagem rodando neste computador"
+
+msgctxt "#30121"
+msgid "Last resort for very messy names. It runs on your own machine, so it costs nothing, but it is HEAVY: it can take a minute per title"
+msgstr "Último recurso para nomes muito bagunçados. Roda na sua própria máquina, então não custa nada, mas PESA: pode levar um minuto por título"
+
+msgctxt "#30122"
+msgid "Address of the local server"
+msgstr "Endereço do servidor local"
+
+msgctxt "#30123"
+msgid "Ollama uses http://localhost:11434/v1 and LM Studio http://localhost:1234/v1"
+msgstr "O Ollama usa http://localhost:11434/v1 e o LM Studio http://localhost:1234/v1"
+
+msgctxt "#30124"
+msgid "Model name"
+msgstr "Nome do modelo"
+
+msgctxt "#30125"
+msgid "The same name the server shows, for example qwen2.5:7b. Use \"Testar modelo local\" on the home screen to pick from a list"
+msgstr "O mesmo nome que o servidor mostra, por exemplo qwen2.5:7b. Use \"Testar modelo local\" na tela inicial para escolher de uma lista"
+
+msgctxt "#30126"
+msgid "Maximum queries each time"
+msgstr "Máximo de consultas por vez"
+
+msgctxt "#30127"
+msgid "Keeps a folder full of unknown names from taking forever"
+msgstr "Evita que uma pasta cheia de nomes desconhecidos demore uma eternidade"
+
+msgctxt "#30128"
+msgid "Seconds to wait for each answer"
+msgstr "Segundos de espera por cada resposta"
+
+msgctxt "#30129"
+msgid "Raise this if your model is big or the computer is slow"
+msgstr "Aumente se o seu modelo for grande ou o computador for lento"
+
+msgctxt "#30130"
+msgid "Shortcut (uses no extra space)"
+msgstr "Atalho (não gasta espaço a mais)"
+
+msgctxt "#30131"
+msgid "Copy (uses twice the space)"
+msgstr "Cópia (gasta o dobro de espaço)"
+
+msgctxt "#30132"
+msgid "Move (empties the downloads folder)"
+msgstr "Mover (esvazia a pasta de downloads)"

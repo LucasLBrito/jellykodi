@@ -46,6 +46,13 @@ def setting_int(key, default=0):
         return default
 
 
+def setting_string(key, default=''):
+    try:
+        return (ADDON.getSettingString(key) or '').strip() or default
+    except Exception:
+        return default
+
+
 # ---------------------------------------------------------------- estado em disco
 def load_state():
     """Lê o state.json. 'utf-8-sig' porque um BOM (comum quando o arquivo é editado por
@@ -94,6 +101,52 @@ def save_state(st):
 def bump_widgets():
     """Força a tela inicial a recarregar as fileiras do Ark."""
     HOME.setProperty('jk_refresh', str(int(time.time())))
+
+
+# ---------------------------------------------------------------- cache em disco
+CACHE_DIR = os.path.join(PROFILE, 'cache')
+
+
+def cache_load(nome):
+    """Lê um cache em JSON. Nunca levanta: cache ruim é cache vazio."""
+    try:
+        with open(os.path.join(CACHE_DIR, nome + '.json'), 'r', encoding='utf-8-sig') as fh:
+            dados = json.load(fh)
+        return dados if isinstance(dados, dict) else {}
+    except FileNotFoundError:
+        return {}
+    except Exception as exc:
+        log('cache %s ilegível (%s); começando de novo' % (nome, exc), xbmc.LOGWARNING)
+        return {}
+
+
+def cache_save(nome, dados):
+    """Grava o cache com .tmp + os.replace, igual ao state.json."""
+    try:
+        os.makedirs(CACHE_DIR, exist_ok=True)
+        alvo = os.path.join(CACHE_DIR, nome + '.json')
+        tmp = alvo + '.tmp'
+        with open(tmp, 'w', encoding='utf-8') as fh:
+            json.dump(dados, fh, ensure_ascii=False, indent=1)
+        os.replace(tmp, alvo)
+    except Exception as exc:
+        log('não gravei o cache %s: %s' % (nome, exc), xbmc.LOGWARNING)
+
+
+def cache_get(nome, chave, dias=30):
+    """Valor ainda válido, ou None. Guarda-se {'v': valor, 'ts': quando}."""
+    reg = cache_load(nome).get(chave)
+    if not isinstance(reg, dict):
+        return None
+    if dias and (time.time() - reg.get('ts', 0)) > dias * 86400:
+        return None
+    return reg.get('v')
+
+
+def cache_put(nome, chave, valor):
+    dados = cache_load(nome)
+    dados[chave] = {'v': valor, 'ts': int(time.time())}
+    cache_save(nome, dados)
 
 
 # ---------------------------------------------------------------- arquivos

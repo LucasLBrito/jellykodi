@@ -9,40 +9,25 @@ BTN_MAIN = 100
 BTN_SECOND = 101
 LBL_INFO = 300
 
+ACTION_MOVE_LEFT = 1
+ACTION_MOVE_RIGHT = 2
 ACTION_PREVIOUS_MENU = 10
-ACTION_NAV_BACK = 92
-ACTION_PAUSE = 12
-ACTION_PLAYER_PLAYPAUSE = 229
 ACTION_STOP = 13
+ACTION_SHOW_OSD = 24
+ACTION_NAV_BACK = 92
+ACTION_MOUSE_LEFT_CLICK = 100
+ACTION_MOUSE_RIGHT_CLICK = 101
+ACTION_MOUSE_WHEEL_UP = 104
+ACTION_MOUSE_WHEEL_DOWN = 105
 
-# Este botão é uma janela de diálogo: enquanto está na tela, ele recebe TUDO que vem
-# do controle. Sem a tabela abaixo, avançar/voltar, legenda, áudio e o menu do player
-# simplesmente não funcionavam enquanto aparecia "Pular abertura"/"Próximo episódio".
-# Cada ação listada é devolvida para a janela do vídeo, que é quem sabe tratá-la.
-PASSTHROUGH = {
-    11: 'Info',
-    14: 'SkipNext',
-    15: 'SkipPrevious',
-    16: 'FastForward',
-    17: 'Rewind',
-    19: 'AspectRatio',
-    20: 'StepForward',
-    21: 'StepBack',
-    22: 'BigStepForward',
-    23: 'BigStepBack',
-    24: 'OSD',
-    25: 'ShowSubtitles',
-    26: 'NextSubtitle',
-    43: 'AnalogSeekForward',
-    44: 'AnalogSeekBack',
-    56: 'AudioNextLanguage',
-    76: 'SmallStepBack',
-    88: 'VolumeUp',
-    89: 'VolumeDown',
-    91: 'Mute',
-    98: 'ChapterOrBigStepForward',
-    99: 'ChapterOrBigStepBack',
-}
+# Como o Kodi trata as teclas enquanto este botão está na tela (testado no Kodi 21):
+# - Pausa, avançar/voltar, legenda, áudio, volume, capítulo, Info e Parar o Kodi JÁ
+#   entrega sozinho ao vídeo. NÃO repetir aqui: antes o código pausava de novo, e a
+#   pausa ligava e desligava na hora ("pausar falha às vezes").
+# - O que não chega ao vídeo e precisa ser repassado: setas (o botão usa para navegar),
+#   o menu do player (OSD) e o mouse.
+# - Para o vídeo tratar, use Action(X) SEM janela; Action(X,fullscreenvideo) não faz
+#   nada para avançar/voltar. Só o OSD precisa ir direto para a janela do vídeo.
 
 
 class OverlayButton(xbmcgui.WindowXMLDialog):
@@ -54,6 +39,7 @@ class OverlayButton(xbmcgui.WindowXMLDialog):
         self.info_label = kwargs.get('info_label', '')
         self.result = None
         self._ready = False
+        self._clicked = False
 
     @classmethod
     def create(cls, **kwargs):
@@ -77,17 +63,31 @@ class OverlayButton(xbmcgui.WindowXMLDialog):
                 pass
 
     def onClick(self, control_id):
+        # o Kodi avisa o clique (onClick) antes de mandar a mesma ação para onAction
+        self._clicked = True
         self.result = 'main' if control_id == BTN_MAIN else 'second'
 
     def onAction(self, action):
         aid = action.getId()
+        clicked, self._clicked = self._clicked, False
         if aid in (ACTION_PREVIOUS_MENU, ACTION_NAV_BACK):
             self.result = 'dismiss'
-        elif aid in (ACTION_PAUSE, ACTION_PLAYER_PLAYPAUSE):
-            xbmc.Player().pause()
         elif aid == ACTION_STOP:
-            self.result = 'dismiss'
-            xbmc.Player().stop()
-        elif aid in PASSTHROUGH:
-            # devolve para a tela do vídeo em vez de engolir
-            xbmc.executebuiltin('Action(%s,fullscreenvideo)' % PASSTHROUGH[aid])
+            self.result = 'dismiss'     # o Kodi para o vídeo sozinho
+        elif aid in (ACTION_MOVE_LEFT, ACTION_MOVE_RIGHT):
+            # Com dois botões ("Assistir créditos" | "Próximo episódio"), esquerda/direita
+            # trocam de botão. Com um botão só, viram voltar/avançar, igual no vídeo.
+            if not self.second_label:
+                xbmc.executebuiltin('Action(StepBack)' if aid == ACTION_MOVE_LEFT else 'Action(StepForward)')
+        elif aid == ACTION_SHOW_OSD:
+            xbmc.executebuiltin('Action(OSD,fullscreenvideo)')
+        elif aid == ACTION_MOUSE_LEFT_CLICK:
+            # clique fora do botão: o mesmo que no vídeo (abre o menu do player)
+            if not clicked:
+                xbmc.executebuiltin('Action(OSD,fullscreenvideo)')
+        elif aid == ACTION_MOUSE_RIGHT_CLICK:
+            xbmc.executebuiltin('Action(Info)')
+        elif aid == ACTION_MOUSE_WHEEL_UP:
+            xbmc.executebuiltin('Action(StepForward)')
+        elif aid == ACTION_MOUSE_WHEEL_DOWN:
+            xbmc.executebuiltin('Action(StepBack)')
