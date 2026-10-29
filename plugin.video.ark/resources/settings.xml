@@ -113,6 +113,9 @@
 				<setting id="tmdb_key" type="string" label="30112" help="30113">
 					<level>0</level>
 					<default></default>
+					<constraints>
+						<allowempty>true</allowempty>
+					</constraints>
 					<control type="edit" format="string"/>
 				</setting>
 				<setting id="meta_write_nfo" type="boolean" label="30114" help="30115">
@@ -143,6 +146,9 @@
 				<setting id="llm_model" type="string" label="30124" help="30125">
 					<level>0</level>
 					<default></default>
+					<constraints>
+						<allowempty>true</allowempty>
+					</constraints>
 					<control type="edit" format="string"/>
 					<dependencies>
 						<dependency type="enable" setting="llm_on" operator="is">true</dependency>
