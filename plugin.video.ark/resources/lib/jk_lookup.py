@@ -64,7 +64,7 @@ PARTE_RE = re.compile(
 
 # Palavras que dizem "isto é um filme" e não fazem parte do título indexado.
 # Sem tirar isto o AniList não acha nada para "Gekijouban Kimetsu no Yaiba Mugen Train"
-# — conferido contra a API de verdade em tests/smoke_anilist.py.
+# — conferido contra a API de verdade.
 FILME_RE = re.compile(
     r'\b(?:gekijouban|gekijou\s*ban|gekijo?uban|eiga|the\s+movie|movie|filme)\b', re.I)
 
