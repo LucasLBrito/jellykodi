@@ -21,7 +21,7 @@ import xbmc
 from resources.lib import jk_common as C
 
 UA = 'Ark/%s (addon de Kodi; +https://github.com/LucasLBrito/jellykodi)' % (
-    C.ADDON.getAddonInfo('version') or '1.9.1')
+    C.ADDON.getAddonInfo('version') or '1.9.2')
 
 PADRAO = {
     'User-Agent': UA,

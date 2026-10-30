@@ -1,6 +1,6 @@
 # Histórico de versões
 
-## 1.9.1
+## 1.9.2
 
 **Tela inicial**
 - O destaque não mostra mais "começar" colado no ano: agora é `Série • 2013 • Gêneros`

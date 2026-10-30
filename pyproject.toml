@@ -2,7 +2,7 @@
 # (Python 3.8+ embutido) e nao e instalado por pip.
 [project]
 name = "ark"
-version = "1.9.1"
+version = "1.9.2"
 description = "Central de midia estilo Netflix para arquivos locais, feita para controle (Kodi 21)"
 requires-python = ">=3.8"
 license = "GPL-2.0-or-later"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<addon id="skin.ark" version="1.9.1" name="Ark" provider-name="Lucas (baseado na Estuary de phil65, Ichabod Fletchman)">
+<addon id="skin.ark" version="1.9.2" name="Ark" provider-name="Lucas (baseado na Estuary de phil65, Ichabod Fletchman)">
 	<requires>
 		<import addon="xbmc.gui" version="5.17.0"/>
 	</requires>
