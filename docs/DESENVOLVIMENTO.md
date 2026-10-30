@@ -131,7 +131,8 @@ desenhada com o brilho SDR reduzido). Para capturas de documentação, use um mo
 
 ## Lançar uma versão
 
-1. Suba a versão nos dois `addon.xml` e no `pyproject.toml` (o teste `test_versoes_iguais`
+1. Suba a versão nos dois `addon.xml` e no `pyproject.toml` e rode `uv lock` (o CI usa
+   `--locked` e falha se o lock ficar com a versão velha; o teste `test_versoes_iguais`
    reclama se ficarem diferentes).
 2. Escreva a seção no `CHANGELOG.md` (o teste `test_versao_no_changelog` confere).
 3. `git tag v1.9.1 && git push origin v1.9.1` — o CI compila o Setup e cria a Release com o
