@@ -18,19 +18,19 @@
 		<value>Bem-vindo ao Ark</value>
 	</variable>
 	<variable name="JKHeroSub">
-		<value condition="String.IsEqual(Window(home).Property(jk_hero),5100) + Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.Label2]$INFO[Container(5100).ListItem.Year,  ,]$INFO[Container(5100).ListItem.Genre,  •  ,]</value>
-		<value condition="String.IsEqual(Window(home).Property(jk_hero),5050) + Integer.IsGreater(Container(5050).NumItems,0)">$INFO[Container(5050).ListItem.Label2]$INFO[Container(5050).ListItem.Year,  ,]$INFO[Container(5050).ListItem.Genre,  •  ,]</value>
-		<value condition="String.IsEqual(Window(home).Property(jk_hero),5150) + Integer.IsGreater(Container(5150).NumItems,0)">$INFO[Container(5150).ListItem.Label2]$INFO[Container(5150).ListItem.Year,  ,]$INFO[Container(5150).ListItem.Genre,  •  ,]</value>
-		<value condition="String.IsEqual(Window(home).Property(jk_hero),5200) + Integer.IsGreater(Container(5200).NumItems,0)">$INFO[Container(5200).ListItem.Label2]$INFO[Container(5200).ListItem.Year,  ,]$INFO[Container(5200).ListItem.Genre,  •  ,]</value>
-		<value condition="String.IsEqual(Window(home).Property(jk_hero),5300) + Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.Label2]$INFO[Container(5300).ListItem.Year,  ,]$INFO[Container(5300).ListItem.Genre,  •  ,]</value>
-		<value condition="String.IsEqual(Window(home).Property(jk_hero),5400) + Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.Label2]$INFO[Container(5400).ListItem.Year,  ,]$INFO[Container(5400).ListItem.Genre,  •  ,]</value>
-		<value condition="String.IsEqual(Window(home).Property(jk_hero),5500) + Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.Label2]$INFO[Container(5500).ListItem.Year,  ,]$INFO[Container(5500).ListItem.Genre,  •  ,]</value>
-		<value condition="Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.Label2]$INFO[Container(5100).ListItem.Year,  ,]$INFO[Container(5100).ListItem.Genre,  •  ,]</value>
-		<value condition="Integer.IsGreater(Container(5150).NumItems,0)">$INFO[Container(5150).ListItem.Label2]$INFO[Container(5150).ListItem.Year,  ,]$INFO[Container(5150).ListItem.Genre,  •  ,]</value>
-		<value condition="Integer.IsGreater(Container(5200).NumItems,0)">$INFO[Container(5200).ListItem.Label2]$INFO[Container(5200).ListItem.Year,  ,]$INFO[Container(5200).ListItem.Genre,  •  ,]</value>
-		<value condition="Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.Label2]$INFO[Container(5300).ListItem.Year,  ,]$INFO[Container(5300).ListItem.Genre,  •  ,]</value>
-		<value condition="Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.Label2]$INFO[Container(5400).ListItem.Year,  ,]$INFO[Container(5400).ListItem.Genre,  •  ,]</value>
-		<value condition="Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.Label2]$INFO[Container(5500).ListItem.Year,  ,]$INFO[Container(5500).ListItem.Genre,  •  ,]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5100) + Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.Label2]$INFO[Container(5100).ListItem.Year,  •  ,]$INFO[Container(5100).ListItem.Genre,  •  ,]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5050) + Integer.IsGreater(Container(5050).NumItems,0)">$INFO[Container(5050).ListItem.Label2]$INFO[Container(5050).ListItem.Year,  •  ,]$INFO[Container(5050).ListItem.Genre,  •  ,]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5150) + Integer.IsGreater(Container(5150).NumItems,0)">$INFO[Container(5150).ListItem.Label2]$INFO[Container(5150).ListItem.Year,  •  ,]$INFO[Container(5150).ListItem.Genre,  •  ,]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5200) + Integer.IsGreater(Container(5200).NumItems,0)">$INFO[Container(5200).ListItem.Label2]$INFO[Container(5200).ListItem.Year,  •  ,]$INFO[Container(5200).ListItem.Genre,  •  ,]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5300) + Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.Label2]$INFO[Container(5300).ListItem.Year,  •  ,]$INFO[Container(5300).ListItem.Genre,  •  ,]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5400) + Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.Label2]$INFO[Container(5400).ListItem.Year,  •  ,]$INFO[Container(5400).ListItem.Genre,  •  ,]</value>
+		<value condition="String.IsEqual(Window(home).Property(jk_hero),5500) + Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.Label2]$INFO[Container(5500).ListItem.Year,  •  ,]$INFO[Container(5500).ListItem.Genre,  •  ,]</value>
+		<value condition="Integer.IsGreater(Container(5100).NumItems,0)">$INFO[Container(5100).ListItem.Label2]$INFO[Container(5100).ListItem.Year,  •  ,]$INFO[Container(5100).ListItem.Genre,  •  ,]</value>
+		<value condition="Integer.IsGreater(Container(5150).NumItems,0)">$INFO[Container(5150).ListItem.Label2]$INFO[Container(5150).ListItem.Year,  •  ,]$INFO[Container(5150).ListItem.Genre,  •  ,]</value>
+		<value condition="Integer.IsGreater(Container(5200).NumItems,0)">$INFO[Container(5200).ListItem.Label2]$INFO[Container(5200).ListItem.Year,  •  ,]$INFO[Container(5200).ListItem.Genre,  •  ,]</value>
+		<value condition="Integer.IsGreater(Container(5300).NumItems,0)">$INFO[Container(5300).ListItem.Label2]$INFO[Container(5300).ListItem.Year,  •  ,]$INFO[Container(5300).ListItem.Genre,  •  ,]</value>
+		<value condition="Integer.IsGreater(Container(5400).NumItems,0)">$INFO[Container(5400).ListItem.Label2]$INFO[Container(5400).ListItem.Year,  •  ,]$INFO[Container(5400).ListItem.Genre,  •  ,]</value>
+		<value condition="Integer.IsGreater(Container(5500).NumItems,0)">$INFO[Container(5500).ListItem.Label2]$INFO[Container(5500).ListItem.Year,  •  ,]$INFO[Container(5500).ListItem.Genre,  •  ,]</value>
 		<value></value>
 	</variable>
 	<variable name="JKHeroPlot">
