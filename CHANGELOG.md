@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 1.9.1
+
+**Tela inicial**
+- O destaque não mostra mais "começar" colado no ano: agora é `Série • 2013 • Gêneros`
+- A sinopse do destaque mostra as três linhas inteiras (a última cortava o pé das letras)
+
 ## 1.9.0
 
 **Descobre o nome certo sozinho.** Antes de organizar, o Ark pesquisa cada série ou filme

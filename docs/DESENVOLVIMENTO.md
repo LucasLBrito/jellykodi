@@ -80,7 +80,7 @@ uv run --no-project --with pillow python instalador/arte/gerar_arte.py
 ### Testar o Setup
 
 ```powershell
-.\instalador\saida\Ark-Setup-1.9.0.exe /VERYSILENT /DIR="C:\ark-teste" /MERGETASKS="!desktopicon"
+.\instalador\saida\Ark-Setup-1.9.1.exe /VERYSILENT /DIR="C:\ark-teste" /MERGETASKS="!desktopicon"
 C:\ark-teste\unins000.exe /VERYSILENT /APAGARDADOS=1
 ```
 
@@ -134,5 +134,5 @@ desenhada com o brilho SDR reduzido). Para capturas de documentação, use um mo
 1. Suba a versão nos dois `addon.xml` e no `pyproject.toml` (o teste `test_versoes_iguais`
    reclama se ficarem diferentes).
 2. Escreva a seção no `CHANGELOG.md` (o teste `test_versao_no_changelog` confere).
-3. `git tag v1.9.0 && git push origin v1.9.0` — o CI compila o Setup e cria a Release com o
+3. `git tag v1.9.1 && git push origin v1.9.1` — o CI compila o Setup e cria a Release com o
    `.exe` e o `.sha256` anexados.
