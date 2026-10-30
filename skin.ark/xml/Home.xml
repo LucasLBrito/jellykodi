@@ -245,7 +245,7 @@
 			<control type="textbox">
 				<top>140</top>
 				<width>820</width>
-				<height>117</height>
+				<height>124</height> <!-- 3 linhas de font13 (~41px) sem cortar o pé das letras -->
 				<font>font13</font>
 				<textcolor>FFE5E5E5</textcolor>
 				<shadowcolor>A0000000</shadowcolor>

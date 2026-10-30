@@ -141,7 +141,7 @@ def list_continue():
                 left = (h.get('total', 0) - pos) / 60.0
                 sub = '%s  •  faltam %d min' % (C.folder_name(path), max(1, round(left)))
             else:
-                sub = '%s  •  começar' % C.folder_name(path)
+                sub = C.folder_name(path)  # ainda não começou: só o nome, sem status solto
             add_video(path, C.nice_title(path), sub, pos, h.get('total', 0), forget)
             count += 1
         else:
